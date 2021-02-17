@@ -1,0 +1,16 @@
+
+
+mark.critic {
+    background-color: var(--md-default-bg-color);
+    color: var(--md-default-fg-color--light);
+    font-weight: bold;
+}
+
+blockquote {
+    font-size: 85%;
+}
+
+.md-typeset ul {
+    list-style-type: square;
+}
+
