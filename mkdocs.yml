@@ -1,0 +1,43 @@
+site_name: "[IrisToolbox] Reference Manual"
+
+theme:
+    name: material
+    font: 
+        text: "Fira Sans"
+        code: "Fira Code"
+    icon: 
+        logo: material/book-open-blank-variant
+    favicon: "images/book-open-blank-variant.ico?9"
+    palette:
+        scheme: default
+        primary: blue grey
+    features:
+        - navigation.tabs
+
+extra_css:
+  - stylesheets/extra.css
+
+use_directory_urls: false
+
+markdown_extensions:
+    - pymdownx.emoji:
+        emoji_index: !!python/name:materialx.emoji.twemoji
+        emoji_generator: !!python/name:materialx.emoji.to_svg
+    - pymdownx.critic
+    - pymdownx.highlight:
+    - pymdownx.superfences
+    - footnotes
+
+
+plugins:
+    - macros:
+        include_yaml: [headlines.yml]
+    - search
+
+nav:
+    - Home:  [{"Introduction": "./index.md"}, {"Installing IrisT": "./install.md"}]
+    - Data Management:
+        - Dates:  [{"Introduction": "dates/index.md"}, {"dd": "dates/dd.md"}, {"hh": "dates/hh.md"}, {"ii": "dates/ii.md"}, {"mm": "dates/mm.md"}, {"qq": "dates/qq.md"}, {"toString": "dates/toString.md"}, {"ww": "dates/ww.md"}, {"yy": "dates/yy.md"}]
+        - Databanks:  [{"Introduction": "databank/index.md"}, {"apply": "databank/apply.md"}, {"clip": "databank/clip.md"}, {"copy": "databank/copy.md"}, {"eval": "databank/eval.md"}, {"fieldNames": "databank/fieldNames.md"}, {"filterFields": "databank/filterFields.md"}, {"fromCSV": "databank/fromCSV.md"}, {"list": "databank/list.md"}, {"merge": "databank/merge.md"}, {"retrieveColumns": "databank/retrieveColumns.md"}, {"toCSV": "databank/toCSV.md"}, {"withEmpty": "databank/withEmpty.md"}]
+        - Databank Chartpacks:  [{"Introduction": "chartpack/index.md"}, {"Chartpack": "chartpack/Chartpack.md"}]
+
