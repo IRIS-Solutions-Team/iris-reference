@@ -18,6 +18,8 @@ extra_css:
   - stylesheets/extra.css
 
 use_directory_urls: false
+docs_dir: source
+site_dir: docs
 
 markdown_extensions:
     - pymdownx.emoji:

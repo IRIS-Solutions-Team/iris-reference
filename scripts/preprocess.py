@@ -17,7 +17,7 @@ class NoIndexFile(Exception):
 class PathSettings(object):
     mkdocs_yml_file: str = "./mkdocs.yml"
     iris_path_prefix: str =  "/Users/myself/iris-drive/iris-toolbox"
-    docs_path_prefix: str = "docs"
+    docs_path_prefix: str = "source"
     headlines_file = "./headlines.yml"
     extras: list[str] = ["stylesheets", "images"]
 
@@ -28,7 +28,7 @@ class PathSettings(object):
                 shutil.rmtree(f)
             os.mkdir(f)
 
-        # Assets to be copied over to docs/
+        # Assets to be copied over to source folder
         for x in cls.extras:
             shutil.copytree(x, os.path.join(PathSettings.docs_path_prefix, x))
 
