@@ -1,33 +1,33 @@
 extra:
     beta: {}
     chartpack:
-        Chartpack: Create a new Chartpack object for plotting databank fields
+        _Chartpack: Create a new Chartpack object for plotting databank fields
     databank:
-        apply: Apply function to a selection of databank fields
-        clip: Clip all time series in databank to a new range
-        copy: Copy fields of source databank to target databank
-        eval: Evaluate an expression within a databank context
-        fieldNames: List of databank field names as a row vector of strings
-        filterFields: Get the names of databank fields that pass name or value tests
-        fromCSV: Create databank by loading CSV file
-        list: List databank fields adding date range to time series fields
-        merge: Merge two or more databanks
-        retrieveColumns: Retrieve selected columns from databank fields
-        toCSV: Write databank to CSV file
-        withEmpty: Create databank with empty time series
+        _apply: Apply function to a selection of databank fields
+        _clip: Clip all time series in databank to a new range
+        _copy: Copy fields of source databank to target databank
+        _eval: Evaluate an expression within a databank context
+        _fieldNames: List of databank field names as a row vector of strings
+        _filterFields: Get the names of databank fields that pass name or value tests
+        _fromCSV: Create databank by loading CSV file
+        _list: List databank fields adding date range to time series fields
+        _merge: Merge two or more databanks
+        _retrieveColumns: Retrieve selected columns from databank fields
+        _toCSV: Write databank to CSV file
+        _withEmpty: Create databank with empty time series
     dates:
-        dd: Create daily dates
-        hh: Create half-yearly dates
-        ii: Create integer dates (numbered observations)
-        mm: Create monthly dates
-        qq: Create quarterly dates
-        toString: Print IrisT dates as formatted strings
-        ww: Create weekly dates
-        yy: Create yearly dates
+        _dd: Create daily dates
+        _hh: Create half-yearly dates
+        _ii: Create integer dates (numbered observations)
+        _mm: Create monthly dates
+        _qq: Create quarterly dates
+        _toString: Print IrisT dates as formatted strings
+        _ww: Create weekly dates
+        _yy: Create yearly dates
     dfm: {}
     dummy: {}
     explanatory:
-        regress: Estimate parameters and residual models in Explanatory object
+        _regress: Estimate parameters and residual models in Explanatory object
     gamma: {}
     linear: {}
     model: {}
@@ -35,13 +35,13 @@ extra:
     plan: {}
     rephrase: {}
     series:
-        Series: Create new time series object
-        convert: Convert time series to another frequency
-        fillMissing: Fill missing time series observations
-        grow: Cumulate level time series from differences or rates of growth
-        randomlyGrowing: Create randomly growing time series
+        _Series: Create new time series object
+        _convert: Convert time series to another frequency
+        _fillMissing: Fill missing time series observations
+        _grow: Cumulate level time series from differences or rates of growth
+        _randomlyGrowing: Create randomly growing time series
     slang: {}
     svar: {}
     var: {}
     x13:
-        season: Interface to X13-Arima seasonal adjustment procedure
+        _season: Interface to X13-Arima seasonal adjustment procedure

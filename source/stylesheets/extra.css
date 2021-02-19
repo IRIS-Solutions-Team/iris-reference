@@ -18,3 +18,15 @@ blockquote {
     font-size: 0.85rem;
 }
 
+.md-typeset__table td,
+.md-typeset__table th {
+    font-size: 0.75rem;
+    line-height: 1.2;
+}
+
+.md-typeset__table code {
+    font-size: 0.7rem;
+    line-height: 1.2;
+}
+
+

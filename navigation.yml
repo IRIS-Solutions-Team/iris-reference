@@ -21,10 +21,10 @@ nav:
     -   Dates: [{"Introduction": "data-management/dates/index.md"}, {"dd": "data-management/dates/dd.md"}, {"hh": "data-management/dates/hh.md"}, {"ii": "data-management/dates/ii.md"}, {"mm": "data-management/dates/mm.md"}, {"qq": "data-management/dates/qq.md"}, {"toString": "data-management/dates/toString.md"}, {"ww": "data-management/dates/ww.md"}, {"yy": "data-management/dates/yy.md"}]
     -   Time Series: [{"Introduction": "data-management/series/index.md"}, {"Series": "data-management/series/Series.md"}, {"convert": "data-management/series/convert.md"}, {"fillMissing": "data-management/series/fillMissing.md"}, {"grow": "data-management/series/grow.md"}, {"randomlyGrowing": "data-management/series/randomlyGrowing.md"}]
     -   Databanks: [{"Introduction": "data-management/databank/index.md"}, {"apply": "data-management/databank/apply.md"}, {"clip": "data-management/databank/clip.md"}, {"copy": "data-management/databank/copy.md"}, {"eval": "data-management/databank/eval.md"}, {"fieldNames": "data-management/databank/fieldNames.md"}, {"filterFields": "data-management/databank/filterFields.md"}, {"fromCSV": "data-management/databank/fromCSV.md"}, {"list": "data-management/databank/list.md"}, {"merge": "data-management/databank/merge.md"}, {"retrieveColumns": "data-management/databank/retrieveColumns.md"}, {"toCSV": "data-management/databank/toCSV.md"}, {"withEmpty": "data-management/databank/withEmpty.md"}]
-    -   Databank Chartpacks: [{"Introduction": "data-management/chartpack/index.md"}, {"Chartpack": "data-management/chartpack/Chartpack.md"}]
     -   Interface to [X13-Arima]: [{"Introduction": "data-management/x13/index.md"}, {"season": "data-management/x13/season.md"}]
 -   Reporting:
     -   Introduction: reporting/index.md
+    -   Databank Chartpacks: [{"Introduction": "reporting/chartpack/index.md"}, {"Chartpack": "reporting/chartpack/Chartpack.md"}]
     -   Interface to [rephrase.js]: [{"Introduction": "reporting/rephrase/index.md"}]
 -   Statistics Utilities:
     -   Introduction: statistics-utilities/index.md

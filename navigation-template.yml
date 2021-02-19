@@ -21,10 +21,10 @@ nav:
     -   Dates:
     -   Time Series:
     -   Databanks:
-    -   Databank Chartpacks:
     -   Interface to [X13-Arima]:
 -   Reporting:
     -   Introduction: reporting/index.md
+    -   Databank Chartpacks:
     -   Interface to [rephrase.js]: 
 -   Statistics Utilities:
     -   Introduction: statistics-utilities/index.md

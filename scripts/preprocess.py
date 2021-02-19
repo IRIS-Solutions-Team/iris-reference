@@ -134,7 +134,7 @@ class Topic(object):
                 raise NoHeadlineFound(self.get_iris_path(f))
             filename_no_ext = f;
             filename_no_ext = filename_no_ext.removesuffix(".md")
-            self.headlines[filename_no_ext] = ma.group(0).strip();
+            self.headlines["_" + filename_no_ext] = ma.group(0).strip();
 
     def populate_navigation(self) -> None:
         self.navigation = list()
@@ -174,9 +174,9 @@ topics = [
     Topic("Dates", ["data-management", "dates"], "DataManagement/@Dater"),
     Topic("Time Series", ["data-management", "series"], "DataManagement/@Series"),
     Topic("Databanks", ["data-management", "databank"], "DataManagement/+databank"),
-    Topic("Databank Chartpacks", ["data-management", "chartpack"], "DataManagement/+databank/@Chartpack"),
     Topic("Interface to [X13-Arima]", ["data-management", "x13"], "DataManagement/+x13"),
 
+    Topic("Databank Chartpacks", ["reporting", "chartpack"], "DataManagement/+databank/@Chartpack"),
     Topic("Interface to [rephrase.js]", ["reporting", "rephrase"], "Plugins/+rephrase"),
 
     Topic("Beta Distribution", ["statistics-utilities", "distribution", "beta"], "Statistics/+distribution/@Beta"),

@@ -6,6 +6,6 @@
 
 | Function      | Description       |
 |---            |---                |
-| [`databank.Chartpack`](Chartpack.md)              | {{ chartpack.Chartpack }} |
+| [`databank.Chartpack`](Chartpack.md)              | {{ chartpack._Chartpack }} |
 
 
