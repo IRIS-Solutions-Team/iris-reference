@@ -3,15 +3,14 @@ import shutil
 import os
 import re
 import glob
+import yaml
 import json
+import pathlib
 
 
-class NoHeadlineFound(Exception):
-    pass
-
-
-class NoIndexFile(Exception):
-    pass
+class NoHeadlineFound(Exception): pass
+class NoIndexFile(Exception): pass
+class EntryNotFound(Exception): pass
 
 
 class PathSettings(object):
@@ -19,23 +18,67 @@ class PathSettings(object):
     iris_path_prefix: str =  "/Users/myself/iris-drive/iris-toolbox"
     docs_path_prefix: str = "source"
     headlines_file = "./headlines.yml"
+    headlines = dict()
+    navigation_template_file = "./navigation-template.yml"
+    navigation_file = "./navigation.yml"
+    navigation = ""
+    higher_level_folders = [
+        ["StructuralModeling", "structural-modeling"],
+        ["TimeSeriesModeling", "time-series-modeling"],
+        ["DataManagement", "data-management"],
+        ["Reporting", "reporting"],
+        ["Statistics", "statistics-utilities"],
+        ["Statistics/+distribution", "statistics-utilities/distribution"]
+    ]
     extras: list[str] = ["stylesheets", "images"]
+
+    @classmethod
+    def create_higher_level_folders(cls):
+        for i in cls.higher_level_folders:
+            dir_to_create = os.path.join(PathSettings.docs_path_prefix, i[1])
+            print(dir_to_create)
+            pathlib.Path(dir_to_create).mkdir(parents=True)
+            shutil.copyfile(
+                os.path.join(PathSettings.iris_path_prefix, i[0], "index.md"),
+                os.path.join(PathSettings.docs_path_prefix, i[1], "index.md"),
+            )
+
+    @classmethod
+    def load_navigation_template(cls):
+        with open(cls.navigation_template_file, "r") as fid:
+            cls.navigation = fid.read()
+
+    @classmethod
+    def write_navigation(cls):
+        with open(cls.navigation_file, "w") as fid:
+            fid.write(cls.navigation)
 
     @classmethod
     def create_fresh_folders(cls) -> None:
         for f in [cls.docs_path_prefix]:
             if os.path.isdir(f):
                 shutil.rmtree(f)
-            os.mkdir(f)
+            pathlib.Path(f).mkdir(parents=True)
 
         # Assets to be copied over to source folder
         for x in cls.extras:
             shutil.copytree(x, os.path.join(PathSettings.docs_path_prefix, x))
 
     @classmethod
-    def write_headlines(cls, headlines) -> None:
+    def dump_headlines(cls) -> None:
         with open(cls.headlines_file, "w") as fid:
-            json.dump(headlines, fid, indent=4)
+            yaml.dump({"extra": cls.headlines}, fid, indent=4)
+
+    @classmethod
+    def insert_in_navigation(cls, name, insert):
+        insert = json.dumps(insert)
+        (cls.navigation, num) = re.subn(
+            f"(-[ ]*{re.escape(name)}[ ]*:).*",
+            r"\1 " + insert,
+            cls.navigation,
+        )
+        if num == 0:
+            raise EntryNotFound(name)
 
 
 class Topic(object):
@@ -48,7 +91,7 @@ class Topic(object):
         self.navigation: list[dict[str, str]] = list()
 
     def get_within_docs_path(self, *args) -> str:
-        return os.path.join(self.nav_folder, *args)
+        return os.path.join(*self.nav_folder, *args)
 
     def get_docs_path(self, *args) -> str:
         return os.path.join(PathSettings.docs_path_prefix, self.get_within_docs_path(*args))
@@ -74,8 +117,8 @@ class Topic(object):
         self.md_files.insert(0, "index.md")
 
         # Create a docs topic folder and copy all the *.md files to there
-        if self.nav_folder != ".":
-            os.mkdir(self.get_docs_path())
+        if self.nav_folder[-1] != ".":
+            pathlib.Path(self.get_docs_path()).mkdir(parents=True)
 
         for f in self.md_files:
             shutil.copyfile(self.get_iris_path(f), self.get_docs_path(f))
@@ -101,33 +144,44 @@ class Topic(object):
                 continue
             self.navigation.append({f.removesuffix(".md"): self.get_within_docs_path(f)})
 
-    def add_to_headlines(self, headlines: dict[str, dict]) -> None:
-        headlines["extra"][self.nav_folder] = self.headlines
+    def add_to_headlines(self) -> None:
+        headlines_prefix = self.nav_folder[-1]
+        PathSettings.headlines[headlines_prefix] = self.headlines
 
-    def write_navigation(self) -> None:
-        navigation_json_string = json.dumps(self.navigation);
-        with open(PathSettings.mkdocs_yml_file, "r") as fid:
-            mkdocs = fid.read()
-        mkdocs = re.sub(
-                f"^( *- {self.nav_name}: ).*",
-                r"\1 " + navigation_json_string,
-                mkdocs,
-                count=1, flags=re.MULTILINE,
-        )
-        with open(PathSettings.mkdocs_yml_file, "w") as fid:
-            fid.write(mkdocs)
+    def add_to_navigation(self) -> None:
+        PathSettings.insert_in_navigation(self.nav_name, self.navigation)
 
 
 PathSettings.create_fresh_folders()
+PathSettings.create_higher_level_folders()
+PathSettings.load_navigation_template()
 
 topics = [
-        Topic("Home", ".", "."),
-        Topic("Dates", "dates", "DataManagement/@Dater"),
-        Topic("Databanks", "databank", "DataManagement/+databank"),
-        Topic("Databank Chartpacks", "chartpack", "DataManagement/+databank/@Chartpack"),
-]
+    Topic("Home", ["."], "."),
 
-headlines = {"extra": dict()}
+    Topic("Model Source File Language", ["structural-modeling", "slang"], "StructuralModeling/+slang"),
+    Topic("Models", ["structural-modeling", "model"], "StructuralModeling/@Model"),
+    Topic("Simulation Plans", ["structural-modeling", "plan"], "StructuralModeling/@Plan"),
+    Topic("Explanatory Equations", ["structural-modeling", "explanatory"], "StructuralModeling/@Explanatory"),
+    Topic("Linear Systems", ["structural-modeling", "linear"], "StructuralModeling/@LinearSystem"),
+
+    Topic("Vector Autoregressions", ["time-series-modeling", "var"], "TimeSeriesModeling/@VAR"),
+    Topic("Structural VARs", ["time-series-modeling", "svar"], "TimeSeriesModeling/@SVAR"),
+    Topic("Panel VARs", ["time-series-modeling", "panel"], "TimeSeriesModeling/@PanelVAR"),
+    Topic("Dynamic Factor Models", ["time-series-modeling", "dfm"], "TimeSeriesModeling/@DFM"),
+    Topic("Estimation with Prior Dummies", ["time-series-modeling", "dummy"], "TimeSeriesModeling/+BVAR"),
+
+    Topic("Dates", ["data-management", "dates"], "DataManagement/@Dater"),
+    Topic("Time Series", ["data-management", "series"], "DataManagement/@Series"),
+    Topic("Databanks", ["data-management", "databank"], "DataManagement/+databank"),
+    Topic("Databank Chartpacks", ["data-management", "chartpack"], "DataManagement/+databank/@Chartpack"),
+    Topic("Interface to [X13-Arima]", ["data-management", "x13"], "DataManagement/+x13"),
+
+    Topic("Interface to [rephrase.js]", ["reporting", "rephrase"], "Plugins/+rephrase"),
+
+    Topic("Beta Distribution", ["statistics-utilities", "distribution", "beta"], "Statistics/+distribution/@Beta"),
+    Topic("Gamma Distribution", ["statistics-utilities", "distribution", "gamma"], "Statistics/+distribution/@Gamma"),
+]
 
 for t in topics:
     print("-"*20 + t.nav_name + "-"*20)
@@ -139,9 +193,12 @@ for t in topics:
 
     t.populate_headlines()
     t.populate_navigation()
-    t.write_navigation()
-    t.add_to_headlines(headlines)
+    t.add_to_navigation()
+    t.add_to_headlines()
 
+PathSettings.dump_headlines()
+PathSettings.write_navigation()
 
-PathSettings.write_headlines(headlines)
-
+os.system("echo [Placeholder] > source/empty.md")
+os.system("cat mkdocs-template.yml navigation.yml > mkdocs.yml");
+ 

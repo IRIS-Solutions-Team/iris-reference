@@ -1,0 +1,39 @@
+site_name: "[IrisToolbox] Reference Manual"
+
+theme:
+    name: material
+    font: 
+        text: "Fira Sans"
+        code: "Fira Code"
+    icon: 
+        logo: material/book-open-blank-variant
+    favicon: "images/book-open-blank-variant.ico?9"
+    palette:
+        scheme: default
+        primary: blue grey
+    features:
+        - navigation.tabs
+
+extra_css:
+  - stylesheets/extra.css
+
+use_directory_urls: false
+docs_dir: source
+site_dir: docs
+
+markdown_extensions:
+    - pymdownx.emoji:
+        emoji_index: !!python/name:materialx.emoji.twemoji
+        emoji_generator: !!python/name:materialx.emoji.to_svg
+    - pymdownx.critic
+    - pymdownx.highlight:
+    - pymdownx.superfences
+    - footnotes
+
+
+plugins:
+    - macros:
+        include_yaml: [headlines.yml]
+    - search
+
+

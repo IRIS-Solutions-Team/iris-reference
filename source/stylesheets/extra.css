@@ -14,3 +14,7 @@ blockquote {
     list-style-type: square;
 }
 
+.md-tabs__item a.md-tabs__link {
+    font-size: 0.85rem;
+}
+
