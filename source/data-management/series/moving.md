@@ -67,8 +67,8 @@ The moving window of observations can be specificied in three different ways:
 * Automatic specification; this only works for time series with a regular
   date frequency (yearly, half-yearly, quarterly, monthly); the window
   covers the last moving year including the current observation; for
-  instance, $t\ $, $t-1\ $, $t-2\ $ and $t-3\ $ for quarterly series, which
-  is hence equivalent to specifying `Window=[0, -1, -2, -3]`.
+  instance, $t$, $t-1$, $t-2$ and $t-3$ for quarterly series, which
+  is equivalent to specifying `Window=[0, -1, -2, -3]`.
 
 * An exact specification of lags or leads relative to the current
   observation.
