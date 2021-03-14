@@ -1,5 +1,6 @@
 
 
+
 mark.critic {
     background-color: var(--md-default-bg-color);
     color: var(--md-default-fg-color--light);
@@ -8,6 +9,10 @@ mark.critic {
 
 blockquote {
     font-size: 85%;
+}
+
+:root {
+    --md-typeset--color: #394A58;
 }
 
 .md-typeset {
