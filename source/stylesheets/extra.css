@@ -10,6 +10,10 @@ blockquote {
     font-size: 85%;
 }
 
+.md-typeset {
+    font-size: 0.5em;
+}
+
 .md-typeset ul {
     list-style-type: square;
 }
