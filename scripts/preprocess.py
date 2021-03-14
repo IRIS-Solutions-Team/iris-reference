@@ -30,7 +30,7 @@ class PathSettings(object):
         ["Statistics", "statistics-utilities"],
         ["Statistics/+distribution", "statistics-utilities/distribution"]
     ]
-    extras: list[str] = ["stylesheets", "images"]
+    extras: list[str] = ["stylesheets", "images", "javascripts"]
 
     @classmethod
     def create_higher_level_folders(cls):
@@ -159,28 +159,29 @@ PathSettings.load_navigation_template()
 topics = [
     Topic("Home", ["."], "."),
 
-    Topic("Model Source File Language", ["structural-modeling", "slang"], "StructuralModeling/+slang"),
+    Topic("Model source file language", ["structural-modeling", "slang"], "StructuralModeling/+slang"),
     Topic("Models", ["structural-modeling", "model"], "StructuralModeling/@Model"),
-    Topic("Simulation Plans", ["structural-modeling", "plan"], "StructuralModeling/@Plan"),
-    Topic("Explanatory Equations", ["structural-modeling", "explanatory"], "StructuralModeling/@Explanatory"),
-    Topic("Linear Systems", ["structural-modeling", "linear"], "StructuralModeling/@LinearSystem"),
+    Topic("Simulation plans", ["structural-modeling", "plan"], "StructuralModeling/@Plan"),
+    Topic("Explanatory equations", ["structural-modeling", "explanatory"], "StructuralModeling/@Explanatory"),
+    Topic("Linear systems", ["structural-modeling", "linear"], "StructuralModeling/@LinearSystem"),
 
-    Topic("Vector Autoregressions", ["time-series-modeling", "var"], "TimeSeriesModeling/@VAR"),
+    Topic("Vector autoregressions", ["time-series-modeling", "var"], "TimeSeriesModeling/@VAR"),
     Topic("Structural VARs", ["time-series-modeling", "svar"], "TimeSeriesModeling/@SVAR"),
     Topic("Panel VARs", ["time-series-modeling", "panel"], "TimeSeriesModeling/@PanelVAR"),
-    Topic("Dynamic Factor Models", ["time-series-modeling", "dfm"], "TimeSeriesModeling/@DFM"),
-    Topic("Estimation with Prior Dummies", ["time-series-modeling", "dummy"], "TimeSeriesModeling/+BVAR"),
+    Topic("Dynamic factor models", ["time-series-modeling", "dfm"], "TimeSeriesModeling/@DFM"),
+    Topic("Estimation with prior dummies", ["time-series-modeling", "dummy"], "TimeSeriesModeling/+BVAR"),
 
     Topic("Dates", ["data-management", "dates"], "DataManagement/@Dater"),
-    Topic("Time Series", ["data-management", "series"], "DataManagement/@Series"),
+    Topic("Time series", ["data-management", "series"], "DataManagement/@Series"),
     Topic("Databanks", ["data-management", "databank"], "DataManagement/+databank"),
+    Topic("Interface to [IMF Data Portal]", ["data-management", "imf"], "DataManagement/+databank/+fromIMF"),
     Topic("Interface to [X13-Arima]", ["data-management", "x13"], "DataManagement/+x13"),
 
-    Topic("Databank Chartpacks", ["reporting", "chartpack"], "DataManagement/+databank/@Chartpack"),
+    Topic("Databank chartpacks", ["reporting", "chartpack"], "DataManagement/+databank/@Chartpack"),
     Topic("Interface to [rephrase.js]", ["reporting", "rephrase"], "Plugins/+rephrase"),
 
-    Topic("Beta Distribution", ["statistics-utilities", "distribution", "beta"], "Statistics/+distribution/@Beta"),
-    Topic("Gamma Distribution", ["statistics-utilities", "distribution", "gamma"], "Statistics/+distribution/@Gamma"),
+    Topic("Beta distribution", ["statistics-utilities", "distribution", "beta"], "Statistics/+distribution/@Beta"),
+    Topic("Gamma distribution", ["statistics-utilities", "distribution", "gamma"], "Statistics/+distribution/@Gamma"),
 ]
 
 for t in topics:
@@ -199,6 +200,5 @@ for t in topics:
 PathSettings.dump_headlines()
 PathSettings.write_navigation()
 
-os.system("echo [Placeholder] > source/empty.md")
 os.system("cat mkdocs-template.yml navigation.yml > mkdocs.yml");
  

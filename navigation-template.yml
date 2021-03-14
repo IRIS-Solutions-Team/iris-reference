@@ -2,34 +2,35 @@ nav:
 -   Home:
     -   Introduction: ./index.md
     -   Installation: ./install.md
--   Structural Modeling:
+-   Structural modeling:
     -   Introduction: structural-modeling/index.md
-    -   Model Source File Language: 
+    -   Model source file language: 
     -   Models: 
-    -   Simulation Plans: 
-    -   Explanatory Equations: 
-    -   Linear Systems:
--   Time Series Modeling:
+    -   Simulation plans: 
+    -   Explanatory equations: 
+    -   Linear systems:
+-   Time series modeling:
     -   Introduction: time-series-modeling/index.md
-    -   Vector Autoregressions:
+    -   Vector autoregressions:
     -   Structural VARs:
     -   Panel VARs:
-    -   Dynamic Factor Models: 
-    -   Estimation with Prior Dummies: 
--   Data Management:
+    -   Dynamic factor models: 
+    -   Estimation with prior dummies: 
+-   Data management:
     -   Introduction: data-management/index.md
     -   Dates:
-    -   Time Series:
+    -   Time series:
     -   Databanks:
+    -   Interface to [IMF Data Portal]: 
     -   Interface to [X13-Arima]:
 -   Reporting:
     -   Introduction: reporting/index.md
-    -   Databank Chartpacks:
+    -   Databank chartpacks:
     -   Interface to [rephrase.js]: 
--   Statistics Utilities:
+-   Statistics utilities:
     -   Introduction: statistics-utilities/index.md
-    -   Distribution Package:
+    -   Distribution package:
         -   Introduction: statistics-utilities/distribution/index.md
-        -   Beta Distribution:
-        -   Gamma Distribution:
+        -   Beta distribution:
+        -   Gamma distribution:
 

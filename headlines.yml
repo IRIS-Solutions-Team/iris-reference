@@ -29,6 +29,10 @@ extra:
     explanatory:
         _regress: Estimate parameters and residual models in Explanatory object
     gamma: {}
+    imf:
+        _codes: Download code lists from IMF Data Portal
+        _data: Download databank of time series from IMF Data Portal
+        _datasets: Download list of datasets from IMF Data Portal
     linear: {}
     model: {}
     panel: {}
@@ -37,9 +41,13 @@ extra:
     series:
         _Series: Create new time series object
         _convert: Convert time series to another frequency
+        _empty: Create empty time series or empty existing time series
         _fillMissing: Fill missing time series observations
         _grow: Cumulate level time series from differences or rates of growth
+        _linearTrend: Create time series with linear trend
+        _moving: Apply function to moving window of time series observation
         _randomlyGrowing: Create randomly growing time series
+        _seasonDummy: Create time series with seasonal dummies
     slang: {}
     svar: {}
     var: {}

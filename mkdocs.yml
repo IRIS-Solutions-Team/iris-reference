@@ -26,10 +26,15 @@ markdown_extensions:
         emoji_index: !!python/name:materialx.emoji.twemoji
         emoji_generator: !!python/name:materialx.emoji.to_svg
     - pymdownx.critic
-    - pymdownx.highlight:
+    - pymdownx.highlight
     - pymdownx.superfences
     - footnotes
+    - pymdownx.arithmatex:
+        generic: true
 
+extra_javascript:
+    - javascripts/mathjax-config.js
+    - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
 
 plugins:
     - macros:
@@ -41,34 +46,35 @@ nav:
 -   Home:
     -   Introduction: ./index.md
     -   Installation: ./install.md
--   Structural Modeling:
+-   Structural modeling:
     -   Introduction: structural-modeling/index.md
-    -   Model Source File Language: [{"Introduction": "structural-modeling/slang/index.md"}]
+    -   Model source file language: [{"Introduction": "structural-modeling/slang/index.md"}]
     -   Models: [{"Introduction": "structural-modeling/model/index.md"}]
-    -   Simulation Plans: [{"Introduction": "structural-modeling/plan/index.md"}]
-    -   Explanatory Equations: [{"Introduction": "structural-modeling/explanatory/index.md"}, {"regress": "structural-modeling/explanatory/regress.md"}]
-    -   Linear Systems: [{"Introduction": "structural-modeling/linear/index.md"}]
--   Time Series Modeling:
+    -   Simulation plans: [{"Introduction": "structural-modeling/plan/index.md"}]
+    -   Explanatory equations: [{"Introduction": "structural-modeling/explanatory/index.md"}, {"regress": "structural-modeling/explanatory/regress.md"}]
+    -   Linear systems: [{"Introduction": "structural-modeling/linear/index.md"}]
+-   Time series modeling:
     -   Introduction: time-series-modeling/index.md
-    -   Vector Autoregressions: [{"Introduction": "time-series-modeling/var/index.md"}]
+    -   Vector autoregressions: [{"Introduction": "time-series-modeling/var/index.md"}]
     -   Structural VARs: [{"Introduction": "time-series-modeling/svar/index.md"}]
     -   Panel VARs: [{"Introduction": "time-series-modeling/panel/index.md"}]
-    -   Dynamic Factor Models: [{"Introduction": "time-series-modeling/dfm/index.md"}]
-    -   Estimation with Prior Dummies: [{"Introduction": "time-series-modeling/dummy/index.md"}]
--   Data Management:
+    -   Dynamic factor models: [{"Introduction": "time-series-modeling/dfm/index.md"}]
+    -   Estimation with prior dummies: [{"Introduction": "time-series-modeling/dummy/index.md"}]
+-   Data management:
     -   Introduction: data-management/index.md
     -   Dates: [{"Introduction": "data-management/dates/index.md"}, {"dd": "data-management/dates/dd.md"}, {"hh": "data-management/dates/hh.md"}, {"ii": "data-management/dates/ii.md"}, {"mm": "data-management/dates/mm.md"}, {"qq": "data-management/dates/qq.md"}, {"toString": "data-management/dates/toString.md"}, {"ww": "data-management/dates/ww.md"}, {"yy": "data-management/dates/yy.md"}]
-    -   Time Series: [{"Introduction": "data-management/series/index.md"}, {"Series": "data-management/series/Series.md"}, {"convert": "data-management/series/convert.md"}, {"fillMissing": "data-management/series/fillMissing.md"}, {"grow": "data-management/series/grow.md"}, {"randomlyGrowing": "data-management/series/randomlyGrowing.md"}]
+    -   Time series: [{"Introduction": "data-management/series/index.md"}, {"Series": "data-management/series/Series.md"}, {"convert": "data-management/series/convert.md"}, {"empty": "data-management/series/empty.md"}, {"fillMissing": "data-management/series/fillMissing.md"}, {"grow": "data-management/series/grow.md"}, {"linearTrend": "data-management/series/linearTrend.md"}, {"moving": "data-management/series/moving.md"}, {"randomlyGrowing": "data-management/series/randomlyGrowing.md"}, {"seasonDummy": "data-management/series/seasonDummy.md"}]
     -   Databanks: [{"Introduction": "data-management/databank/index.md"}, {"apply": "data-management/databank/apply.md"}, {"clip": "data-management/databank/clip.md"}, {"copy": "data-management/databank/copy.md"}, {"eval": "data-management/databank/eval.md"}, {"fieldNames": "data-management/databank/fieldNames.md"}, {"filterFields": "data-management/databank/filterFields.md"}, {"fromCSV": "data-management/databank/fromCSV.md"}, {"list": "data-management/databank/list.md"}, {"merge": "data-management/databank/merge.md"}, {"retrieveColumns": "data-management/databank/retrieveColumns.md"}, {"toCSV": "data-management/databank/toCSV.md"}, {"withEmpty": "data-management/databank/withEmpty.md"}]
+    -   Interface to [IMF Data Portal]: [{"Introduction": "data-management/imf/index.md"}, {"codes": "data-management/imf/codes.md"}, {"data": "data-management/imf/data.md"}, {"datasets": "data-management/imf/datasets.md"}]
     -   Interface to [X13-Arima]: [{"Introduction": "data-management/x13/index.md"}, {"season": "data-management/x13/season.md"}]
 -   Reporting:
     -   Introduction: reporting/index.md
-    -   Databank Chartpacks: [{"Introduction": "reporting/chartpack/index.md"}, {"Chartpack": "reporting/chartpack/Chartpack.md"}]
+    -   Databank chartpacks: [{"Introduction": "reporting/chartpack/index.md"}, {"Chartpack": "reporting/chartpack/Chartpack.md"}]
     -   Interface to [rephrase.js]: [{"Introduction": "reporting/rephrase/index.md"}]
--   Statistics Utilities:
+-   Statistics utilities:
     -   Introduction: statistics-utilities/index.md
-    -   Distribution Package:
+    -   Distribution package:
         -   Introduction: statistics-utilities/distribution/index.md
-        -   Beta Distribution: [{"Introduction": "statistics-utilities/distribution/beta/index.md"}]
-        -   Gamma Distribution: [{"Introduction": "statistics-utilities/distribution/gamma/index.md"}]
+        -   Beta distribution: [{"Introduction": "statistics-utilities/distribution/beta/index.md"}]
+        -   Gamma distribution: [{"Introduction": "statistics-utilities/distribution/gamma/index.md"}]
 

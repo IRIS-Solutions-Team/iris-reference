@@ -21,7 +21,7 @@ blockquote {
 .md-typeset__table td,
 .md-typeset__table th {
     font-size: 0.75rem;
-    line-height: 1.2;
+    line-height: 1.0;
 }
 
 .md-typeset__table code {
@@ -29,4 +29,14 @@ blockquote {
     line-height: 1.2;
 }
 
+.md-typeset h1 {
+    font-size: 1.6em;
+}
 
+.md-typeset h2 {
+    font-size: 1.4em;
+}
+
+.md-typeset h3 {
+    font-size: 1.1em;
+}
