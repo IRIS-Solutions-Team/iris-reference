@@ -2066,7 +2066,7 @@ functions such as <code>mean</code>, <code>sum</code>, etc.
 calculations.
 </p>
 </blockquote>
-<p>__<code>Window=@auto</code> [ numeric | <code>@auto</code> ]</p>
+<p><strong><code>Window=@auto</code></strong> [ numeric | <code>@auto</code> ]</p>
 <blockquote>
 <p>The moving window of observations to which the function <code>Function=</code> will
 applied to construct the observations of the <code>outputSeries</code>; see
@@ -2098,8 +2098,10 @@ window. Negative numbers mean lags (observations before the current
 observation), positive numbers mean leads (observations after the current
 observation), zero means the current observation:</p>
 <div class="arithmatex">\[
+\begin{gathered}
 \mathit{window} = \left[ a, b, c, \dots \right] \\[5pt]
 y_t = f\left( \left[ x_{t+a}, x_{t+b}, x_{t+c}, \dots \right] \right)
+\end{gathered}
 \]</div>
 <p>If some of the observations are missing, they are still included in the
 window (typically a <code>NaN</code> for plain numeric time series), and the result
@@ -2115,39 +2117,25 @@ the current observation backward, or from the current observation forward
 observation, but from an observation before (a negative offset) or after (a
 positive offset).</p>
 <p>If <span class="arithmatex">\(\mathit{window}=a + bi\)</span>, the algorithm is as follows:</p>
-<ol>
-<li>For each period <span class="arithmatex">\(t\)</span>, define the output value <span class="arithmatex">\(y_t\)</span> by applying the
+<p>*. For each period <span class="arithmatex">\(t\)</span>, define the output value <span class="arithmatex">\(y_t\)</span> by applying the
    function <span class="arithmatex">\(f\)</span> to a vector of a total of <span class="arithmatex">\(b\)</span> observations from the input
-   series <span class="arithmatex">\(x_t\)</span> constructed as described in steps 2 and 3.</li>
-</ol>
+   series <span class="arithmatex">\(x_t\)</span> constructed as described in steps 2 and 3.</p>
 <p>If the window length (the imaginary part) <span class="arithmatex">\(b\)</span> is a negative number:</p>
-<ol>
-<li>
-<p>Take all observations starting from <span class="arithmatex">\(x_{t+a}\)</span> (i.e. from the current
+<p>*. Take all observations starting from <span class="arithmatex">\(x_{t+a}\)</span> (i.e. from the current
    observation if <span class="arithmatex">\(a=0\)</span>, or from an observation before or after shifted by
    the offset <span class="arithmatex">\(a\)</span>) going backward, i.e. <span class="arithmatex">\(x_{t+a}, x_{t+a-1}, x_{t+a-2},
    \dots\)</span>, all the way to the very first observation available.</p>
-</li>
-<li>
-<p>Exclude any missing observations from this collection. From the remaining
+<p>*. Exclude any missing observations from this collection. From the remaining
    non-missing observations, take a total of <span class="arithmatex">\(b\)</span> observations starting from
    the most recent observation going backward.</p>
-</li>
-</ol>
 <p>If the window length (the imaginary part) <span class="arithmatex">\(b\)</span> is a positive number:</p>
-<ol>
-<li>
-<p>Take all observations starting from <span class="arithmatex">\(x_{t+a}\)</span> (i.e. from the current
+<p>*. Take all observations starting from <span class="arithmatex">\(x_{t+a}\)</span> (i.e. from the current
    observation if <span class="arithmatex">\(a=0\)</span>, or from an observation before or after shifted by
    the offset <span class="arithmatex">\(a\)</span>) going forward, i.e. <span class="arithmatex">\(x_{t+a}, x_{t+a+1}, x_{t+a+2},
    \dots\)</span>, all the way to the very last observation available.</p>
-</li>
-<li>
-<p>Exclude any missing observations from this collection. From the remaining
+<p>*. Exclude any missing observations from this collection. From the remaining
    non-missing observations, take a total of <span class="arithmatex">\(b\)</span> observations starting from
    the most recent observation going forward.</p>
-</li>
-</ol>
 <h2 id="example">Example</h2>
 <h3 id="centered-moving-average-and-sum">Centered moving average and sum</h3>
 <p>Calculate a centered moving average with a total length of the window being 5

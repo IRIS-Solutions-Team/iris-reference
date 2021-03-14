@@ -53,7 +53,7 @@ __`Range=Inf`__ [ Dater | `Inf` ]
 > calculations.
 >
 
-__`Window=@auto` [ numeric | `@auto` ]
+__`Window=@auto`__ [ numeric | `@auto` ]
 >
 > The moving window of observations to which the function `Function=` will
 > applied to construct the observations of the `outputSeries`; see
@@ -85,8 +85,10 @@ observation), positive numbers mean leads (observations after the current
 observation), zero means the current observation:
 
 $$
+\begin{gathered}
 \mathit{window} = \left[ a, b, c, \dots \right] \\[5pt]
 y_t = f\left( \left[ x_{t+a}, x_{t+b}, x_{t+c}, \dots \right] \right)
+\end{gathered}
 $$
 
 If some of the observations are missing, they are still included in the
@@ -108,29 +110,29 @@ positive offset).
 
 If $\mathit{window}=a + bi$, the algorithm is as follows:
 
-1. For each period $t$, define the output value $y_t$ by applying the
+*. For each period $t$, define the output value $y_t$ by applying the
    function $f$ to a vector of a total of $b$ observations from the input
    series $x_t$ constructed as described in steps 2 and 3.
 
 If the window length (the imaginary part) $b$ is a negative number:
 
-2. Take all observations starting from $x_{t+a}$ (i.e. from the current
+*. Take all observations starting from $x_{t+a}$ (i.e. from the current
    observation if $a=0$, or from an observation before or after shifted by
    the offset $a$) going backward, i.e. $x_{t+a}, x_{t+a-1}, x_{t+a-2},
    \dots$, all the way to the very first observation available.
 
-3. Exclude any missing observations from this collection. From the remaining
+*. Exclude any missing observations from this collection. From the remaining
    non-missing observations, take a total of $b$ observations starting from
    the most recent observation going backward.
 
 If the window length (the imaginary part) $b$ is a positive number:
 
-2. Take all observations starting from $x_{t+a}$ (i.e. from the current
+*. Take all observations starting from $x_{t+a}$ (i.e. from the current
    observation if $a=0$, or from an observation before or after shifted by
    the offset $a$) going forward, i.e. $x_{t+a}, x_{t+a+1}, x_{t+a+2},
    \dots$, all the way to the very last observation available.
 
-3. Exclude any missing observations from this collection. From the remaining
+*. Exclude any missing observations from this collection. From the remaining
    non-missing observations, take a total of $b$ observations starting from
    the most recent observation going forward.
 
