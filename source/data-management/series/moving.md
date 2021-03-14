@@ -137,7 +137,7 @@ If the window length (the imaginary part) $b$ is a positive number:
    the most recent observation going forward.
 
 
-## Example
+## Examples
 
 ### Centered moving average and sum
 
