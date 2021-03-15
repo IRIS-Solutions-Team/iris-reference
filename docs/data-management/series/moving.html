@@ -2022,7 +2022,7 @@
                 
                 
                 <h1 id="moving"><code>moving</code></h1>
-<p><mark class="critic"> Apply function to moving window of time series observation </mark></p>
+<p><mark class="critic"> Apply function to moving window of time series observations </mark></p>
 <h2 id="syntax">Syntax</h2>
 <div class="highlight"><pre><span></span><code>outputSeries = moving(inputSeries, ...)
 </code></pre></div>
@@ -2117,25 +2117,39 @@ the current observation backward, or from the current observation forward
 observation, but from an observation before (a negative offset) or after (a
 positive offset).</p>
 <p>If <span class="arithmatex">\(\mathit{window}=a + bi\)</span>, the algorithm is as follows:</p>
-<p>*. For each period <span class="arithmatex">\(t\)</span>, define the output value <span class="arithmatex">\(y_t\)</span> by applying the
+<ul>
+<li>For each period <span class="arithmatex">\(t\)</span>, define the output value <span class="arithmatex">\(y_t\)</span> by applying the
    function <span class="arithmatex">\(f\)</span> to a vector of a total of <span class="arithmatex">\(b\)</span> observations from the input
-   series <span class="arithmatex">\(x_t\)</span> constructed as described in steps 2 and 3.</p>
+   series <span class="arithmatex">\(x_t\)</span> constructed as described in steps 2 and 3.</li>
+</ul>
 <p>If the window length (the imaginary part) <span class="arithmatex">\(b\)</span> is a negative number:</p>
-<p>*. Take all observations starting from <span class="arithmatex">\(x_{t+a}\)</span> (i.e. from the current
+<ul>
+<li>
+<p>Take all observations starting from <span class="arithmatex">\(x_{t+a}\)</span> (i.e. from the current
    observation if <span class="arithmatex">\(a=0\)</span>, or from an observation before or after shifted by
    the offset <span class="arithmatex">\(a\)</span>) going backward, i.e. <span class="arithmatex">\(x_{t+a}, x_{t+a-1}, x_{t+a-2},
    \dots\)</span>, all the way to the very first observation available.</p>
-<p>*. Exclude any missing observations from this collection. From the remaining
+</li>
+<li>
+<p>Exclude any missing observations from this collection. From the remaining
    non-missing observations, take a total of <span class="arithmatex">\(b\)</span> observations starting from
    the most recent observation going backward.</p>
+</li>
+</ul>
 <p>If the window length (the imaginary part) <span class="arithmatex">\(b\)</span> is a positive number:</p>
-<p>*. Take all observations starting from <span class="arithmatex">\(x_{t+a}\)</span> (i.e. from the current
+<ul>
+<li>
+<p>Take all observations starting from <span class="arithmatex">\(x_{t+a}\)</span> (i.e. from the current
    observation if <span class="arithmatex">\(a=0\)</span>, or from an observation before or after shifted by
    the offset <span class="arithmatex">\(a\)</span>) going forward, i.e. <span class="arithmatex">\(x_{t+a}, x_{t+a+1}, x_{t+a+2},
    \dots\)</span>, all the way to the very last observation available.</p>
-<p>*. Exclude any missing observations from this collection. From the remaining
+</li>
+<li>
+<p>Exclude any missing observations from this collection. From the remaining
    non-missing observations, take a total of <span class="arithmatex">\(b\)</span> observations starting from
    the most recent observation going forward.</p>
+</li>
+</ul>
 <h2 id="examples">Examples</h2>
 <h3 id="centered-moving-average-and-sum">Centered moving average and sum</h3>
 <p>Calculate a centered moving average with a total length of the window being 5

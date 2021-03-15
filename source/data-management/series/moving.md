@@ -1,6 +1,6 @@
 # `moving`
 
-{== Apply function to moving window of time series observation ==}
+{== Apply function to moving window of time series observations ==}
 
 
 ## Syntax
@@ -110,29 +110,29 @@ positive offset).
 
 If $\mathit{window}=a + bi$, the algorithm is as follows:
 
-*. For each period $t$, define the output value $y_t$ by applying the
+* For each period $t$, define the output value $y_t$ by applying the
    function $f$ to a vector of a total of $b$ observations from the input
    series $x_t$ constructed as described in steps 2 and 3.
 
 If the window length (the imaginary part) $b$ is a negative number:
 
-*. Take all observations starting from $x_{t+a}$ (i.e. from the current
+* Take all observations starting from $x_{t+a}$ (i.e. from the current
    observation if $a=0$, or from an observation before or after shifted by
    the offset $a$) going backward, i.e. $x_{t+a}, x_{t+a-1}, x_{t+a-2},
    \dots$, all the way to the very first observation available.
 
-*. Exclude any missing observations from this collection. From the remaining
+* Exclude any missing observations from this collection. From the remaining
    non-missing observations, take a total of $b$ observations starting from
    the most recent observation going backward.
 
 If the window length (the imaginary part) $b$ is a positive number:
 
-*. Take all observations starting from $x_{t+a}$ (i.e. from the current
+* Take all observations starting from $x_{t+a}$ (i.e. from the current
    observation if $a=0$, or from an observation before or after shifted by
    the offset $a$) going forward, i.e. $x_{t+a}, x_{t+a+1}, x_{t+a+2},
    \dots$, all the way to the very last observation available.
 
-*. Exclude any missing observations from this collection. From the remaining
+* Exclude any missing observations from this collection. From the remaining
    non-missing observations, take a total of $b$ observations starting from
    the most recent observation going forward.
 

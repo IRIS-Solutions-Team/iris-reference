@@ -45,7 +45,7 @@ extra:
         _fillMissing: Fill missing time series observations
         _grow: Cumulate level time series from differences or rates of growth
         _linearTrend: Create time series with linear trend
-        _moving: Apply function to moving window of time series observation
+        _moving: Apply function to moving window of time series observations
         _randomlyGrowing: Create randomly growing time series
         _seasonDummy: Create time series with seasonal dummies
     slang: {}
