@@ -64,7 +64,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#model-source-file-language" class="md-skip">
+        <a href="#model-file-language" class="md-skip">
           Skip to content
         </a>
       
@@ -412,9 +412,86 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Introduction
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="index.html" class="md-nav__link md-nav__link--active">
         Introduction
       </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#categorical-list-of-keywords" class="md-nav__link">
+    Categorical list of keywords
+  </a>
+  
+    <nav class="md-nav" aria-label="Categorical list of keywords">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#declaring-model-names-variables-parameters-and-shocks" class="md-nav__link">
+    Declaring model names: Variables, parameters and shocks
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#defining-model-equations" class="md-nav__link">
+    Defining model equations
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#controling-log-status-of-variables" class="md-nav__link">
+    Controling log status of variables
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#other-keywords" class="md-nav__link">
+    Other keywords
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pseudofunctions" class="md-nav__link">
+    Pseudofunctions
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#basic-rules-for-writing-irist-model-source-files" class="md-nav__link">
+    Basic rules for writing IrisT model source files
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1802,6 +1879,69 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#categorical-list-of-keywords" class="md-nav__link">
+    Categorical list of keywords
+  </a>
+  
+    <nav class="md-nav" aria-label="Categorical list of keywords">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#declaring-model-names-variables-parameters-and-shocks" class="md-nav__link">
+    Declaring model names: Variables, parameters and shocks
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#defining-model-equations" class="md-nav__link">
+    Defining model equations
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#controling-log-status-of-variables" class="md-nav__link">
+    Controling log status of variables
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#other-keywords" class="md-nav__link">
+    Other keywords
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pseudofunctions" class="md-nav__link">
+    Pseudofunctions
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#basic-rules-for-writing-irist-model-source-files" class="md-nav__link">
+    Basic rules for writing IrisT model source files
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1813,7 +1953,330 @@
               
                 
                 
-                <h1 id="model-source-file-language">Model Source File Language</h1>
+                <h1 id="model-file-language">Model file language</h1>
+<p>Model file language is a system of keywords that define the structure of
+model source files. The model source files are plain text files (saved
+under any file name with any extension) that describe the model: its
+equations, variables, parameters, etc. The model files do not describe what
+tasks to do with the model. To run the tasks you want to perform with the
+model, you need first to load the model file into Matlab using the
+<a href="../Model/Model.md"><code>Model</code></a> function. This function creates a model
+object. Then you write your own m-files using Matlab and IRIS
+functions to perform the desired tasks with the model object.</p>
+<p>You can get the model source files syntax highlighted in the Matlab editor
+to improve the readability of the files, and helps navigate the model more
+quickly. See <a href="setup/Contents">the setup instructions</a> for more details.</p>
+<h2 id="categorical-list-of-keywords">Categorical list of keywords</h2>
+<h3 id="declaring-model-names-variables-parameters-and-shocks">Declaring model names: Variables, parameters and shocks</h3>
+<table>
+<thead>
+<tr>
+<th>Keyword</th>
+<th>Brief Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>!transition-variables</td>
+<td>List of transition variables</td>
+</tr>
+<tr>
+<td>!transition-shocks</td>
+<td>List of transition shocks</td>
+</tr>
+<tr>
+<td>!measurement-variables</td>
+<td>List of measurement variables</td>
+</tr>
+<tr>
+<td>!measurement-shocks</td>
+<td>List of measurement shocks</td>
+</tr>
+<tr>
+<td>!exogenous-variables</td>
+<td>List of exogenous variables</td>
+</tr>
+<tr>
+<td>!parameters</td>
+<td>List of parameters</td>
+</tr>
+<tr>
+<td>!dynamic-autoexog</td>
+<td>Definitions of variable-shock pairs to be autoexogenized-autoendogenized in dynamic simulations</td>
+</tr>
+<tr>
+<td>!steady-autoexog</td>
+<td>Definitions of variable-parameter pairs to be autoexogenized-autoendogenized in steady-state calculations</td>
+</tr>
+</tbody>
+</table>
+<h3 id="defining-model-equations">Defining model equations</h3>
+<table>
+<thead>
+<tr>
+<th>Keyword</th>
+<th>Brief Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>!transition-equations</td>
+<td>Block of transition equations</td>
+</tr>
+<tr>
+<td>!measurement-equations</td>
+<td>Block of measurement equations</td>
+</tr>
+<tr>
+<td>!dtrends</td>
+<td>Block of deterministic trend equations</td>
+</tr>
+<tr>
+<td>!links</td>
+<td>Block of dynamic links</td>
+</tr>
+<tr>
+<td>!preparser-equations</td>
+<td>Block of reporting equations</td>
+</tr>
+</tbody>
+</table>
+<h3 id="controling-log-status-of-variables">Controling log status of variables</h3>
+<table>
+<thead>
+<tr>
+<th>Keyword</th>
+<th>Brief Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>!log_variables</td>
+<td>List of log-linearised variables</td>
+</tr>
+<tr>
+<td>!all_but</td>
+<td>Inverse list of log-linearised variables</td>
+</tr>
+</tbody>
+</table>
+<h3 id="other-keywords">Other keywords</h3>
+<table>
+<thead>
+<tr>
+<th>Keyword</th>
+<th>Brief Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>min</td>
+<td>Define loss function for optimal policy</td>
+</tr>
+<tr>
+<td>!! (steady_version)</td>
+<td>Steady-state version of an equation</td>
+</tr>
+<tr>
+<td>{...} (shift)</td>
+<td>Lag or lead</td>
+</tr>
+<tr>
+<td>&amp; (steady_ref)</td>
+<td>Reference to the steady-state level of a variable</td>
+</tr>
+<tr>
+<td>!ttrend</td>
+<td>Linear time trend in deterministic trend equations</td>
+</tr>
+</tbody>
+</table>
+<h3 id="pseudofunctions">Pseudofunctions</h3>
+<p>Pseudofunctions do not start with an exclamation point</p>
+<table>
+<thead>
+<tr>
+<th>Keyword</th>
+<th>Brief Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>diff</td>
+<td>First difference</td>
+</tr>
+<tr>
+<td>roc</td>
+<td>Gross rate of change</td>
+</tr>
+<tr>
+<td>pct</td>
+<td>Percent rate of change</td>
+</tr>
+<tr>
+<td>difflog</td>
+<td>First difference of logarithm</td>
+</tr>
+<tr>
+<td>movavg</td>
+<td>Moving average</td>
+</tr>
+<tr>
+<td>movgeom</td>
+<td>Moving geometric average</td>
+</tr>
+<tr>
+<td>movprod</td>
+<td>Moving product</td>
+</tr>
+<tr>
+<td>movsum</td>
+<td>Moving sum</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Preparser Commands</strong></p>
+<table>
+<thead>
+<tr>
+<th>Keyword</th>
+<th>Brief Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>!substitutions</td>
+<td>Define text substitutions</td>
+</tr>
+<tr>
+<td>&lt;...&gt; (interp)</td>
+<td>Evaluate</td>
+</tr>
+<tr>
+<td>!import</td>
+<td>Include the content of another model file</td>
+</tr>
+<tr>
+<td>!export</td>
+<td>Create exportable file to be saved in working directory</td>
+</tr>
+<tr>
+<td>!function</td>
+<td>Create exportable m-file function to be saved in working directory</td>
+</tr>
+<tr>
+<td>!if</td>
+<td>Choose block of code based on logical condition</td>
+</tr>
+<tr>
+<td>!switch</td>
+<td>Switch among several cases based on expression</td>
+</tr>
+<tr>
+<td>!for</td>
+<td>For loop for automated creation of model code</td>
+</tr>
+<tr>
+<td>% (line_comment)</td>
+<td>Line comments</td>
+</tr>
+<tr>
+<td>%{...%} (block_comment)</td>
+<td>Block comments</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Matlab Functions and User Functions in Model Files</strong></p>
+<p>You can use any of the built-in functions (Matlab functions, functions
+within the Toolboxes you have on your computer, and so on). In addition,
+you can also use your own functions (written as an m-file) as long as the
+m-file is on the Matlab search path or in the current directory.</p>
+<p>In your own m-file functions, you can also (optionally) supply the first
+derivatives that will be used to compute Taylor expansions when the model
+is being solved, and the second derivatives that will be used when
+the function occurs in a loss function.</p>
+<p>When asked for the derivatives, the function is called with two extra
+input arguments on top of that function's regular input arguments. The
+first extra input argument is a text string <code>'diff'</code> (indicating the call
+to the function is supposed to return a derivative). The second extra
+input argument is a number or a vector of two numbers; it determines with
+respect to which input argument or arguments the first derivative or the
+second derivative is requested.</p>
+<p>For instance, your function takes three input arguments, <code>myfunc(x,y,z)</code>.
+To be able to supply derivates avoiding thus numerical differentiation,
+the function must be written so that the following three calls</p>
+<div class="highlight"><pre><span></span><code>myfunc(x,y,z,&#39;diff&#39;,1)
+myfunc(x,y,z,&#39;diff&#39;,2)
+myfunc(x,y,z,&#39;diff&#39;,3)
+</code></pre></div>
+<p>return the first derivative wrt to the first, second, and third input
+argument, respectively, while</p>
+<div class="highlight"><pre><span></span><code>myfunc(x,y,z,&#39;diff&#39;,[1,2])
+</code></pre></div>
+<p>returns the second derivative wrt to the first and second input
+arguments. Note that second derivatives are only needed for functions
+that occur in an equation defining optimal policy objective,
+<a href="irislang/min">min</a>.</p>
+<p>If any of these calls fail, the respective derivative will be simply
+evaluated numerically.</p>
+<h2 id="basic-rules-for-writing-irist-model-source-files">Basic rules for writing IrisT model source files</h2>
+<ul>
+<li>
+<p>There can be four types of equations in IrisT models: transition equations
+which are simply the endogenous dynamic equations, measurement equations
+which link the model to observables, deterministic trend equations which
+can be added at the top of measurement equations, and dynamic links which
+can be used to link some parameters or steady-state values to each other.</p>
+</li>
+<li>
+<p>There can be two types of variables and two types of shocks in IRIS
+models: transition variables and shocks, and measurement variables and
+shocks.</p>
+</li>
+<li>
+<p>Each model must have at least one transition (aka endogenous)
+variable and one transition equation.</p>
+</li>
+<li>
+<p>Each variable, shock, or parameter must be declared in the appropriate
+declaration section.</p>
+</li>
+<li>
+<p>The declaration sections and equations sections can be written in any
+order.</p>
+</li>
+<li>
+<p>You can have as many declaration sections or equations sections of the
+same kind as you wish in one model file; they all get combined together
+at the time the model is being loaded.</p>
+</li>
+<li>
+<p>Transition variables can occur with lags and leads in transition
+equations. Transition variables cannot, though, have leads in measurement
+equations.</p>
+</li>
+<li>
+<p>Measurement variables and the shocks cannot have any lags or leads.</p>
+</li>
+<li>
+<p>Transition shocks cannot occur in measurement equations, and the
+measurement shocks cannot occur in transition equations.</p>
+</li>
+<li>
+<p>Exogenous variables can only occur in dtrends (deterministic trend
+equations), and must be always supplied in the input database to commands
+like <code>model/simulate</code>, <code>model/jforecast</code>, <code>model/filter</code>,
+<code>model/estimate</code>, etc. They are not returned in the output databases.</p>
+</li>
+<li>
+<p>You can choose between linearisation and log-linearisation for each
+individual transition and measurement variable. Shocks are always
+linearized. Exogenous variables must be always introduced so that their
+effect on the respective measurement variable is linear.</p>
+</li>
+</ul>
+<p>-IRIS Macroeconomic Modeling Toolbox
+-Copyright (c) 2007-2020 IRIS Solutions Team</p>
                 
               
               

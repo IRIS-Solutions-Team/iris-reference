@@ -2043,21 +2043,26 @@ from the <code>inputSeries</code>.
 <h2 id="options">Options</h2>
 <p><strong><code>Function=@mean</code></strong> [ function_handle ]</p>
 <blockquote>
-<p>Function to be applied to moving window of observations.
+<p>Function to be applied to moving window of observations. By default, the
+function is supposed to accept two input arguments: an array of data, and
+the dimension along which the function will be calculated (this is the
+way the standard built-int <code>@mean</code>, <code>@sum</code>, etc. functions work).
 </p>
 </blockquote>
 <p><strong><code>Period=false</code></strong> [ <code>true</code> | <code>false</code> ]</p>
 <blockquote>
-<p>Force the calculations to be put in a loop period by period; this options
-works only whemn <code>Window=</code> is not a complex number (in which case the
-calculations are always period by period).</p>
-<p>If <code>true</code>, the function <code>Function=</code> is evaluated on a column vector of
-observations (determined by the <code>Window=</code> specification), one period at a
-time. </p>
-<p>If <code>false</code>, the funcion is evaluated on a whole array of observations,
-and supplied a second input argument <code>1</code> to indicate the dimension along
-which the function is to be calculated. This is consistent with standard
-functions such as <code>mean</code>, <code>sum</code>, etc.
+<p>Force the calculations to be put in a loop period by period and refrain
+from using dimension as a second input argument into the <code>Function</code>. This
+options works only when <code>Window=</code> is not a complex number (in which case
+the calculations are always period by period).</p>
+<p>Under the default <code>Period=false</code>, the function is evaluated on a whole
+array of observations, and supplied a second input argument <code>1</code> to
+indicate the dimension along which the function is to be calculated. This
+is consistent with standard functions such as <code>mean</code>, <code>sum</code>, etc.</p>
+<p>If <code>Period=true</code>, the function <code>Function=</code> is evaluated on a column
+vector of observations constituting the moving window for the current
+period only (determined by the <code>Window=</code> specification), one period at a
+time. 
 </p>
 </blockquote>
 <p><strong><code>Range=Inf</code></strong> [ Dater | <code>Inf</code> ]</p>
@@ -2075,23 +2080,32 @@ Description and Examples.
 </blockquote>
 <h2 id="description">Description</h2>
 <p>The moving window of observations can be specificied in three different ways:</p>
-<ul>
-<li>
-<p>Automatic specification; this only works for time series with a regular
-  date frequency (yearly, half-yearly, quarterly, monthly); the window
-  covers the last moving year including the current observation; for
-  instance, <span class="arithmatex">\(t\)</span>, <span class="arithmatex">\(t-1\)</span>, <span class="arithmatex">\(t-2\)</span> and <span class="arithmatex">\(t-3\)</span> for quarterly series, which
-  is equivalent to specifying <code>Window=[0, -1, -2, -3]</code>.</p>
-</li>
-<li>
-<p>An exact specification of lags or leads relative to the current
-  observation.</p>
-</li>
-<li>
-<p>A fixed number of available (non-missing) observations from the current
-  period (plus/minus an offset) backward or forward.</p>
-</li>
-</ul>
+<table>
+<thead>
+<tr>
+<th>Moving window</th>
+<th>Options <code>Window=</code> value</th>
+<th>Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Moving year of observations</td>
+<td><code>@auto</code></td>
+<td>The window depends on the date frequency of the <code>inputSeries</code>; only available for yearly, half-yearly, quarterly and monthly frequencies</td>
+</tr>
+<tr>
+<td>Exact specification of lags and leads</td>
+<td>Vector of real integers</td>
+<td>Negative for lags, positive for leads, zero for current period</td>
+</tr>
+<tr>
+<td>Fixed number of non-missing observations</td>
+<td>Complex number (scalar)</td>
+<td>Negative imaginary part means the number of observations going back in time (starting from current), positive imaginary part means going forward in time</td>
+</tr>
+</tbody>
+</table>
 <h3 id="exact-specification-of-moving-window">Exact specification of moving window</h3>
 <p>Use a vector of integers to specify an exact composition of the moving
 window. Negative numbers mean lags (observations before the current
@@ -2164,8 +2178,11 @@ Calculate a moving sum on the same window of observations:</p>
 </code></pre></div>
 <h3 id="weighted-centered-moving-average">Weighted centered moving average</h3>
 <p>Supply a user defined function to calculate a weighted centered moving
-average (with the window specification as in the previous example); note
-that we have to use <code>period=true</code> in this case:</p>
+average (with the window specification as in the previous example); we have
+to use the option <code>Period=true</code> in this case because our function
+<code>weightedAverage</code> assumes that its input argument is only a vector of 5
+numbers (the moving window of observations corresponding to the current
+period).</p>
 <div class="highlight"><pre><span></span><code><span class="n">func</span> <span class="p">=</span> <span class="p">@(</span><span class="n">x</span><span class="p">)</span> <span class="mf">0.10</span><span class="o">*</span><span class="n">x</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.15</span><span class="o">*</span><span class="n">x</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.50</span><span class="o">*</span><span class="n">x</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.15</span><span class="o">*</span><span class="n">x</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.10</span><span class="o">*</span><span class="n">x</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
 <span class="n">y</span> <span class="p">=</span> <span class="n">moving</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="s">&quot;window&quot;</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span> <span class="s">&quot;function&quot;</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="s">&quot;period&quot;</span><span class="p">,</span> <span class="nb">true</span><span class="p">)</span>
 </code></pre></div>
@@ -2173,7 +2190,8 @@ that we have to use <code>period=true</code> in this case:</p>
 <div class="highlight"><pre><span></span><code><span class="n">y</span> <span class="p">=</span> <span class="mf">0.10</span><span class="o">*</span><span class="n">x</span><span class="p">{</span><span class="o">-</span><span class="mi">2</span><span class="p">}</span> <span class="o">+</span> <span class="mf">0.15</span><span class="o">*</span><span class="n">x</span><span class="p">{</span><span class="o">-</span><span class="mi">1</span><span class="p">}</span> <span class="o">+</span> <span class="mf">0.50</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="mf">0.15</span><span class="o">*</span><span class="n">x</span><span class="p">{</span><span class="mi">1</span><span class="p">}</span> <span class="o">+</span> <span class="mf">0.10</span><span class="o">*</span><span class="n">x</span><span class="p">{</span><span class="mi">2</span><span class="p">}</span>
 </code></pre></div>
 <h3 id="average-of-5-last-available-observations">Average of 5 last available observations</h3>
-<p>Create a daily series of random observations, and remove weekends:</p>
+<p>Create a daily series of random observations, and remove weekends; the time
+series will therefore have <code>NaN</code>s in two out of every seven observations:</p>
 <div class="highlight"><pre><span></span><code><span class="n">x</span> <span class="p">=</span> <span class="n">Series</span><span class="p">(</span><span class="n">dd</span><span class="p">(</span><span class="mi">2000</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">):</span><span class="n">dd</span><span class="p">(</span><span class="mi">2020</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">31</span><span class="p">),</span> <span class="p">@</span><span class="n">randn</span><span class="p">);</span>
 <span class="n">x</span> <span class="p">=</span> <span class="n">removeWeekends</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
 </code></pre></div>
