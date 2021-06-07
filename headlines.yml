@@ -2,6 +2,9 @@ extra:
     beta: {}
     chartpack:
         _Chartpack: Create a new Chartpack object for plotting databank fields
+        _add: Add new chart to a databank.Chartpack object
+        _clear: Clear all charts from the chartpack
+        _draw: Render charts defined in Chartpack
     databank:
         _apply: Apply function to a selection of databank fields
         _clip: Clip all time series in databank to a new range
@@ -12,7 +15,11 @@ extra:
         _fromCSV: Create databank by loading CSV file
         _list: List databank fields adding date range to time series fields
         _merge: Merge two or more databanks
+        _minusControl: Create simulation-minus-control database
+        _range: Find a range that encompasses the ranges of all or selected databank
+            time series
         _retrieveColumns: Retrieve selected columns from databank fields
+        _toArray: Create numeric array from time series data
         _toCSV: Write databank to CSV file
         _withEmpty: Create databank with empty time series
     dates:
@@ -27,6 +34,7 @@ extra:
     dfm: {}
     dummy: {}
     explanatory:
+        _collectResidualNames: Collect names of LHS variables
         _regress: Estimate parameters and residual models in Explanatory object
     gamma: {}
     imf:
@@ -34,12 +42,28 @@ extra:
         _data: Download databank of time series from IMF Data Portal
         _datasets: Download list of datasets from IMF Data Portal
     linear: {}
-    model: {}
+    model:
+        _access: Access properties of Model objects
+        _checkSteady: Check if equations hold for currently assigned steady-state
+            values
+        _fromFile: Create new Model object from model source file(s)
+        _fromSnippet: Create new Model object from snippet of code within m-file
+        _fromString: Create new Model object from string array
+        _replaceNames: Replace model names with some other names
+        _simulate: Run a model simulation
+        _solve: Calculate first-order solution matrices
+        _steady: Compute steady state or balance-growth path of the model
+        _table: Create table based on selected indicators from Model object
     panel: {}
-    plan: {}
+    plan:
+        _autoswap: Exogenize variables and endogenize shocks autoswap pairs
+        _forExplanatory: Create simulation Plan for Explanatory object
+        _forModel: Create simulation Plan for Model object
     rephrase: {}
     series:
         _Series: Create new time series object
+        _chainlink: Calculate chain linked aggregate level series from level components
+            and weights
         _convert: Convert time series to another frequency
         _empty: Create empty time series or empty existing time series
         _fillMissing: Fill missing time series observations
@@ -47,8 +71,55 @@ extra:
         _linearTrend: Create time series with linear trend
         _moving: Apply function to moving window of time series observations
         _randomlyGrowing: Create randomly growing time series
+        _rebase: Rebase times series data to specified period
+        _regress: Ordinary or weighted least-square regression
         _seasonDummy: Create time series with seasonal dummies
-    slang: {}
+    slang:
+        _alias: Separate alias from the rest of name or equation description
+        _all_but: Inverse list of log-linearised variables
+        _autoswaps_simulate: Definitions of variable-shock pairs to be autoswapped
+            in dynamic simulations
+        _autoswaps_steady: Definitions of variable-parameter pairs to be autoexogenized
+            in steady-state calculations
+        _block_comment: Block comments
+        _diff: First difference pseudofunction
+        _difflog: First log-difference pseudofunction
+        _dtrends: Block of deterministic trend equations
+        _equations: Write model equations
+        _exogenous_variables: Declare names exogenous variables
+        _export: Create exportable file to be saved in working directory.
+        _for: For loop for automated creation of model code.
+        _function: Create exportable m-file function to be saved in working directory
+        _guidelines: Guideline for writing and structuring model source files
+        _if: Choose block of code based on logical condition.
+        _import: Include the content of another model file.
+        _interp: Interpolation.
+        _line_comment: Line comments
+        _links: Define dynamic links
+        _log_variables: List of log-linearised variables
+        _measurement_equations: Block of measurement equations
+        _measurement_shocks: Declare names of measurement shocks
+        _measurement_variables: Declare names fo measurement variables
+        _min: Define loss function for optimal policy
+        _movavg: Moving average pseudofunction
+        _movgeom: Moving geometric average pseudofunction
+        _movprod: Moving product pseudofunction
+        _movsum: Moving sum pseudofunction
+        _names: 'Declare model names: Variables, shocks, parameters'
+        _parameters: Declare names of parameters
+        _pct: Percent change
+        _postprocessor: Postprocessing equations
+        _preprocessor: Preprocessing equations
+        _roc: Gross rate of change pseudofunction
+        _shift: Lag or lead
+        _steady_ref: Reference to the steady-state level of a variable
+        _steady_version: Steady-state versions of equations
+        _substitutions: Define text substitutions
+        _switch: Switch among several cases based on expression.
+        _transition_equations: Block of transition equations
+        _transition_shocks: Declare names of transition shocks
+        _transition_variables: Declare names of transition variables
+        _ttrend: Linear time trend in deterministic trend equations
     svar: {}
     var: {}
     x13:

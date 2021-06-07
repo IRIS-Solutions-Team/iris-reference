@@ -24,6 +24,7 @@ class PathSettings(object):
     navigation = ""
     higher_level_folders = [
         ["StructuralModeling", "structural-modeling"],
+        ["+solver", "numerical-utilities/solver"], 
         ["TimeSeriesModeling", "time-series-modeling"],
         ["DataManagement", "data-management"],
         ["Reporting", "reporting"],
@@ -132,9 +133,10 @@ class Topic(object):
                 file_content = fid.read()
             if (ma := re.search("(?<=\{==).*(?===\})", file_content)) is None:
                 raise NoHeadlineFound(self.get_iris_path(f))
-            filename_no_ext = f;
+            filename_no_ext = f
             filename_no_ext = filename_no_ext.removesuffix(".md")
-            self.headlines["_" + filename_no_ext] = ma.group(0).strip();
+            filename_no_ext = filename_no_ext.replace("-", "_").replace("!", "")
+            self.headlines["_" + filename_no_ext] = ma.group(0).strip()
 
     def populate_navigation(self) -> None:
         self.navigation = list()
@@ -159,7 +161,7 @@ PathSettings.load_navigation_template()
 topics = [
     Topic("Home", ["."], "."),
 
-    Topic("Model source file language", ["structural-modeling", "slang"], "StructuralModeling/+slang"),
+    Topic("Model source file language", ["structural-modeling", "slang"], "StructuralModeling/Slang"),
     Topic("Models", ["structural-modeling", "model"], "StructuralModeling/@Model"),
     Topic("Simulation plans", ["structural-modeling", "plan"], "StructuralModeling/@Plan"),
     Topic("Explanatory equations", ["structural-modeling", "explanatory"], "StructuralModeling/@Explanatory"),
@@ -200,5 +202,5 @@ for t in topics:
 PathSettings.dump_headlines()
 PathSettings.write_navigation()
 
-os.system("cat mkdocs-template.yml navigation.yml > mkdocs.yml");
+os.system("cat mkdocs-template.yml navigation.yml > mkdocs.yml")
  

@@ -33,4 +33,6 @@ nav:
         -   Introduction: statistics-utilities/distribution/index.md
         -   Beta distribution:
         -   Gamma distribution:
+-   Numerical utilities:
+    -   Nonlinear solver: numerical-utilities/solver/index.md
 

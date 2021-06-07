@@ -1,21 +1,21 @@
-# `moving`
+# `moving`  
 
 {== Apply function to moving window of time series observations ==}
 
 
-## Syntax
+## Syntax  
 
     outputSeries = moving(inputSeries, ...)
 
 
-## Input arguments
+## Input arguments  
 
 __`inputSeries`__ [ Series ]
 >
 > Input times series.
 >
 
-## Output arguments
+## Output arguments  
 
 __`outputSeries`__ [ Series ]
 >
@@ -24,7 +24,7 @@ __`outputSeries`__ [ Series ]
 > from the `inputSeries`.
 >
 
-## Options
+## Options   
 
 __`Function=@mean`__ [ function_handle ]
 >
@@ -69,11 +69,11 @@ __`Window=@auto`__ [ numeric | `@auto` ]
 
 The moving window of observations can be specificied in three different ways:
 
-| Moving window | Options `Window=` value | Comment |
-|---|---|---|
-| Moving year of observations | `@auto` | The window depends on the date frequency of the `inputSeries`; only available for yearly, half-yearly, quarterly and monthly frequencies |
-| Exact specification of lags and leads | Vector of real integers | Negative for lags, positive for leads, zero for current period |
-| Fixed number of non-missing observations | Complex number (scalar) | Negative imaginary part means the number of observations going back in time (starting from current), positive imaginary part means going forward in time |  
+Moving window | Option `Window=` | Comment
+--|---|---
+Moving year of observations | `@auto` | The window depends on the date frequency of the `inputSeries`; only available for yearly, half-yearly, quarterly and monthly frequencies 
+Exact specification of lags and leads | Vector of real integers | Negative for lags, positive for leads, zero for current period 
+Fixed number of non-missing observations | Complex number (scalar) | Negative imaginary part means the number of observations going back in time (starting from current), positive imaginary part means going forward in time 
 
 
 ### Exact specification of moving window
@@ -198,8 +198,9 @@ y0 = moving(x, "window", -5i)
 ```
 
 Create a time series by calculating the average of the five most recent
-observations available, however now not including the current observation
-(i.e. select the last five observations from $x_{t-1}, x_{t-2}, \dots$
+observations available as before, but now starting from the previous month
+(not including the current observation); in other words, select the latest
+available five observations among $x_{t-1}, x_{t-2}, \dots$
 
 ```matlab
 y1 = moving(x, "window", -1-5i)

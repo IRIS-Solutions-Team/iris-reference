@@ -1,4 +1,3 @@
-
 # Model file language
 
 Model file language is a system of keywords that define the structure of
@@ -7,131 +6,147 @@ under any file name with any extension) that describe the model: its
 equations, variables, parameters, etc. The model files do not describe what
 tasks to do with the model. To run the tasks you want to perform with the
 model, you need first to load the model file into Matlab using the
-[`Model`](../Model/Model.md) function. This function creates a model
-object. Then you write your own m-files using Matlab and IRIS
+[`Model.fromFile`](../model/fromFile.md) function. This function creates a
+model object. Then you write your own m-files using Matlab and IrisT
 functions to perform the desired tasks with the model object.
+
+When writing model files, you can also use the IrisT preparsing commands
+that introduce tools for writing reusable and well-structured model code
+base and minimize repetitive model code writing tasks.
 
 You can get the model source files syntax highlighted in the Matlab editor
 to improve the readability of the files, and helps navigate the model more
-quickly. See [the setup instructions](setup/Contents) for more details.
+quickly; see the [setup instructions](../../install.md).
 
 
 ## Categorical list of keywords
 
 ### Declaring model names: Variables, parameters and shocks
 
- Keyword                    | Brief Description
- ---------------------------|-----------------------------------------------------------------
-  !transition-variables     | List of transition variables
-  !transition-shocks        | List of transition shocks
-  !measurement-variables    | List of measurement variables
-  !measurement-shocks       | List of measurement shocks
-  !exogenous-variables      | List of exogenous variables
-  !parameters               | List of parameters
-  !dynamic-autoexog         | Definitions of variable-shock pairs to be autoexogenized-autoendogenized in dynamic simulations
-  !steady-autoexog          | Definitions of variable-parameter pairs to be autoexogenized-autoendogenized in steady-state calculations
+See [{{ slang._names }}](`names.md`) for details on declaring model names.
+See [{{ slang._guidelines }}](`guidelines.md`).
+
+Keyword | Description 
+---|---
+[`!transition-variables`](!transition-variables.md) | {{ slang._transition_variables }}
+[`!transition-shocks`](!transition-shocks) | {{ slang._transition_shocks }}
+[`!measurement-variables`](!measurement-variables.md) | {{ slang._measurement_variables }}
+[`!measurement-shocks`](!measurement-shocks.md) | {{ slang._measurement_shocks }}
+[`!parameters`](!parameters.md) | {{ slang._parameters }}
+[`!exogenous-variables`](!exogenous-variables.md) | {{ slang._exogenous_variables }}
 
 
-### Defining model equations
+### Writing model equations
 
- Keyword                    | Brief Description
- ---------------------------|-----------------------------------------------------------------
-  !transition-equations     | Block of transition equations
-  !measurement-equations    | Block of measurement equations
-  !dtrends                  | Block of deterministic trend equations
-  !links                    | Block of dynamic links
-  !preparser-equations      | Block of reporting equations
+See [{{ slang._equations }}](`equations.md`) for details on declaring model equations.
+See [{{ slang._guidelines }}](`guidelines.md`) for writing model source files.
 
-
-### Controling log status of variables
-
- Keyword                    | Brief Description
- ---------------------------|-----------------------------------------------------------------
-  !log_variables            | List of log-linearised variables
-  !all_but                  | Inverse list of log-linearised variables
+Keyword | Description 
+---|---
+[`!transition-equations`](!transition-equations.md) | 
+[`!measurement-equations`](!measurement-equations.md) | 
+[`!dtrends`](!dtrends.md) | 
+[`!links`](!links.md) | 
+[`!preprocessor`](!preprocessor.md) | 
+[`!postprocessor`](!postprocessor.md) | 
 
 
-### Other keywords
+### Controlling log status of variables
 
- Keyword                    | Brief Description
- ---------------------------|-----------------------------------------------------------------
-  min                       | Define loss function for optimal policy
-  !! (steady_version)       | Steady-state version of an equation
-  {...} (shift)             | Lag or lead
-  & (steady_ref)            | Reference to the steady-state level of a variable
-  !ttrend                   | Linear time trend in deterministic trend equations
+Keyword | Description 
+---|---
+[`!log-variables`](!log-variables.md) | 
+[`!all-but`](!all-but.md) | 
+
+
+### Defining autoswap pairs
+
+[`!autoswaps-simulate`](!autoswaps-simulate.md) | 
+[`!autoswaps-steady`](!autoswaps-steady.md) | 
+
+
+### Other keywords and syntax
+
+Keyword | Description 
+---|---
+[`min`](min.md) | 
+[`!!`](steady-version.md) | 
+[`||`](alias.md) | 
+[`{...}`](shift.md) | 
+[`&`](steady-ref.md) | 
+[`!ttrend`](!ttrend.md) | 
 
 
 ### Pseudofunctions
 
 Pseudofunctions do not start with an exclamation point
 
+Keyword | Description 
+---|---
+[`diff`](diff.md) | 
+[`roc`](roc.md) | 
+[`pct`](pct.md) | 
+[`difflog`](difflog.md) | 
+[`movavg`](movavg.md) | 
+[`movgeom`](movgeom.md) | 
+[`movprod`](movprod.md) | 
+[`movsum`](movsum.md) | 
 
- Keyword                    | Brief Description
- ---------------------------|-----------------------------------------------------------------
-  diff                      | First difference 
-  roc                       | Gross rate of change 
-  pct                       | Percent rate of change 
-  difflog                   | First difference of logarithm
-  movavg                    | Moving average 
-  movgeom                   | Moving geometric average 
-  movprod                   | Moving product 
-  movsum                    | Moving sum 
+### Preparsing keywords
 
-
-__Preparser Commands__
-
- Keyword                    | Brief Description
- ---------------------------|-----------------------------------------------------------------
-  !substitutions            | Define text substitutions
-  <...> (interp)            | Evaluate
-  !import                   | Include the content of another model file
-  !export                   | Create exportable file to be saved in working directory
-  !function                 | Create exportable m-file function to be saved in working directory
-  !if                       | Choose block of code based on logical condition
-  !switch                   | Switch among several cases based on expression
-  !for                      | For loop for automated creation of model code
-  % (line_comment)          | Line comments
-  %{...%} (block_comment)   | Block comments
+Keyword | Description 
+---|---
+[`%`](line-comment.md) | 
+[`%{...%}`](block-comment.md) | 
+[`<...>`](interp.md) | 
+[`!export`](!export.md) | 
+[`!for`](!for.md) | 
+[`!function`](!function.md) | 
+[`!if`](!if.md) | 
+[`!import`](!import.md) | 
+[`!substitutions`](!substitutions.md) | 
+[`!switch`](!switch.md) | 
 
 
-__Matlab Functions and User Functions in Model Files__
+
+## Matlab and user-defined functions in model files
 
 You can use any of the built-in functions (Matlab functions, functions
-within the Toolboxes you have on your computer, and so on). In addition,
-you can also use your own functions (written as an m-file) as long as the
-m-file is on the Matlab search path or in the current directory.
+within the Toolboxes you have on your computer, or your own m-file
+functions). The only requirement is that the function needs to be visible
+to Matlab, i.e. located either in the current working directory or in a
+folder on the Matlab search path.
 
-In your own m-file functions, you can also (optionally) supply the first
-derivatives that will be used to compute Taylor expansions when the model
-is being solved, and the second derivatives that will be used when
-the function occurs in a loss function.
+In addition, when using your own m-file functions, you can also
+(optionally) supply the first derivatives that will be used to compute
+Taylor expansions when the model is being solved, and the second
+derivatives that will be used when the function occurs in a loss function.
 
 When asked for the derivatives, the function is called with two extra
 input arguments on top of that function's regular input arguments. The
-first extra input argument is a text string `'diff'` (indicating the call
+first extra input argument is a text string `"diff"` (indicating the call
 to the function is supposed to return a derivative). The second extra
 input argument is a number or a vector of two numbers; it determines with
 respect to which input argument or arguments the first derivative or the
 second derivative is requested.
 
-For instance, your function takes three input arguments, `myfunc(x,y,z)`.
+For instance, your function takes three input arguments, `myfunc(x, y, z)`.
 To be able to supply derivates avoiding thus numerical differentiation,
 the function must be written so that the following three calls
 
-    myfunc(x,y,z,'diff',1)
-    myfunc(x,y,z,'diff',2)
-    myfunc(x,y,z,'diff',3)
+    myfunc(x, y, z, "diff", 1)
+    myfunc(x, y, z, "diff", 2)
+    myfunc(x, y, z, "diff", 3)
 
 return the first derivative wrt to the first, second, and third input
 argument, respectively, while
 
-    myfunc(x,y,z,'diff',[1,2])
+    myfunc(x, y, z, "diff", [1, 2])
 
 returns the second derivative wrt to the first and second input
 arguments. Note that second derivatives are only needed for functions
 that occur in an equation defining optimal policy objective,
-[min](irislang/min).
+[`min`](min.md).
 
 If any of these calls fail, the respective derivative will be simply
 evaluated numerically.
@@ -145,7 +160,7 @@ which link the model to observables, deterministic trend equations which
 can be added at the top of measurement equations, and dynamic links which
 can be used to link some parameters or steady-state values to each other.
 
-* There can be two types of variables and two types of shocks in IRIS
+* There can be two types of variables and two types of shocks in IrisT
 models: transition variables and shocks, and measurement variables and
 shocks.
 
@@ -172,9 +187,10 @@ equations.
 measurement shocks cannot occur in transition equations.
 
 * Exogenous variables can only occur in dtrends (deterministic trend
-equations), and must be always supplied in the input database to commands
-like `model/simulate`, `model/jforecast`, `model/filter`,
-`model/estimate`, etc. They are not returned in the output databases.
+  equations), and must be always supplied as part of the input database to
+  commands like [`Model/simulate`](../model/simulate),
+  [`Model/filter`](../model/filter), [`Model/estimate`](../model/estimate),
+  etc. They are not returned in the output databases.
 
 * You can choose between linearisation and log-linearisation for each
 individual transition and measurement variable. Shocks are always
@@ -182,5 +198,5 @@ linearized. Exogenous variables must be always introduced so that their
 effect on the respective measurement variable is linear.
 
 
--IRIS Macroeconomic Modeling Toolbox
--Copyright (c) 2007-2020 IRIS Solutions Team
+
+
