@@ -1,0 +1,238 @@
+
+iref="$i/reference"
+source="$iref/source"
+
+cd $iref
+
+# If the $source directory exists, wipe it out 
+if [[ -d "$source" ]]; then
+    # gfind $iref -name *.md -delete
+    rm -rf $source
+fi
+
+# python scripts/populate_index.py
+
+
+#
+# Source
+#
+
+gmkdir -p "$source"
+gcp $iris/*md $source/
+gcp $iris/.pages $source/
+
+gmkdir -p $source/javascripts/
+gcp $iref/javascripts/*js $source/javascripts/ 
+
+gmkdir -p $source/images/
+gcp $iref/images/* $source/images/
+
+gmkdir -p $source/stylesheets/
+gcp $iref/stylesheets/*css $source/stylesheets/
+
+#
+# Setup
+#
+
+gmkdir -p $source/Setup
+
+gcp $iris/Setup/*md \
+    $source/Setup/
+
+
+#
+# Structural modeling
+# 
+
+gmkdir -p $source/StructuralModeling
+gcp $iris/StructuralModeling/index.md \
+    $source/StructuralModeling/
+gcp $iris/StructuralModeling/.pages \
+    $source/StructuralModeling/
+
+    # Slang
+    gmkdir -p $source/StructuralModeling/Slang
+    gcp $iris/StructuralModeling/Slang/*md \
+        $source/StructuralModeling/Slang
+    gcp $iris/StructuralModeling/Slang/.pages \
+        $source/StructuralModeling/Slang
+
+    # Model
+    gmkdir -p $source/StructuralModeling/Model
+    gcp $iris/StructuralModeling/@Model/*md \
+        $source/StructuralModeling/Model
+    gcp $iris/StructuralModeling/@Model/.pages \
+        $source/StructuralModeling/Model
+
+    # Plan
+    gmkdir -p $source/StructuralModeling/Plan
+    gcp $iris/StructuralModeling/@Plan/*md \
+        $source/StructuralModeling/Plan
+    gcp $iris/StructuralModeling/@Plan/.pages \
+        $source/StructuralModeling/Plan
+
+    # Explanatory
+    gmkdir -p $source/StructuralModeling/Explanatory
+    gcp $iris/StructuralModeling/@Explanatory/*md \
+        $source/StructuralModeling/Explanatory
+
+    # Linear System
+    gmkdir -p $source/StructuralModeling/LinearSystem
+    gcp $iris/StructuralModeling/@LinearSystem/*md \
+        $source/StructuralModeling/LinearSystem
+
+
+#
+# TimeSeriesModeling
+#
+
+gmkdir -p $source/TimeSeriesModeling
+gcp $iris/TimeSeriesModeling/index.md \
+    $source/TimeSeriesModeling/
+gcp $iris/TimeSeriesModeling/.pages \
+    $source/TimeSeriesModeling/
+
+    gmkdir -p $source/TimeSeriesModeling/VAR
+    gcp $iris/TimeSeriesModeling/@VAR/*md \
+        $source/TimeSeriesModeling/VAR/
+    gcp $iris/TimeSeriesModeling/@VAR/.pages \
+        $source/TimeSeriesModeling/VAR/
+
+    gmkdir -p $source/TimeSeriesModeling/SVAR
+    gcp $iris/TimeSeriesModeling/@SVAR/*md \
+        $source/TimeSeriesModeling/SVAR/
+    gcp $iris/TimeSeriesModeling/@SVAR/.pages \
+        $source/TimeSeriesModeling/SVAR/
+
+    gmkdir -p $source/TimeSeriesModeling/PanelVAR
+    gcp $iris/TimeSeriesModeling/PanelVAR/*md \
+        $source/TimeSeriesModeling/PanelVAR/
+    gcp $iris/TimeSeriesModeling/PanelVAR/.pages \
+        $source/TimeSeriesModeling/PanelVAR/
+
+    gmkdir -p $source/TimeSeriesModeling/dummy
+    gcp $iris/TimeSeriesModeling/+BVAR/*md \
+        $source/TimeSeriesModeling/dummy/
+    gcp $iris/TimeSeriesModeling/+BVAR/.pages \
+        $source/TimeSeriesModeling/dummy/
+
+    gmkdir -p $source/TimeSeriesModeling/Dynafit
+    gcp $iris/TimeSeriesModeling/@Dynafit/*md \
+        $source/TimeSeriesModeling/Dynafit/
+    gcp $iris/TimeSeriesModeling/@Dynafit/.pages \
+        $source/TimeSeriesModeling/Dynafit/
+
+    gmkdir -p $source/TimeSeriesModeling/Armani
+    gcp $iris/TimeSeriesModeling/@Armani/*md \
+        $source/TimeSeriesModeling/Armani/
+    gcp $iris/TimeSeriesModeling/@Armani/.pages \
+        $source/TimeSeriesModeling/Armani/
+
+    gmkdir -p $source/TimeSeriesModeling/ParamArmani
+    gcp $iris/TimeSeriesModeling/@ParamArmani/*md \
+        $source/TimeSeriesModeling/ParamArmani/
+    gcp $iris/TimeSeriesModeling/@ParamArmani/.pages \
+        $source/TimeSeriesModeling/ParamArmani/
+
+    gmkdir -p $source/TimeSeriesModeling/x13
+    gcp $iris/TimeSeriesModeling/+x13/*md \
+        $source/TimeSeriesModeling/x13/
+    gcp $iris/TimeSeriesModeling/+x13/.pages \
+        $source/TimeSeriesModeling/x13/
+
+
+#
+# DataManagement
+#
+
+gmkdir -p $source/DataManagement
+gcp $iris/DataManagement/index.md \
+    $source/DataManagement/
+gcp $iris/DataManagement/.pages \
+    $source/DataManagement/
+
+    gmkdir -p $source/DataManagement/Series
+    gcp $iris/DataManagement/@Series/*md \
+        $source/DataManagement/Series
+
+    gmkdir -p $source/DataManagement/databank
+    gcp $iris/DataManagement/+databank/*md \
+        $source/DataManagement/databank
+
+    gmkdir -p $source/DataManagement/Dater
+    gcp $iris/DataManagement/@Dater/*md \
+        $source/DataManagement/Dater
+
+
+#
+# Reporting 
+#
+
+gmkdir -p $source/Reporting/
+gcp $iris/Reporting/index.md \
+    $source/Reporting/
+gcp $iris/Reporting/.pages \
+    $source/Reporting/
+
+    gmkdir -p $source/Reporting/rephrase
+    gcp $iris/Plugins/+rephrase/*md \
+        $source/Reporting/rephrase/
+    gcp $iris/Plugins/+rephrase/.pages \
+        $source/Reporting/rephrase/
+
+    gmkdir -p $source/Reporting/databank.Chartpack/
+    gcp $iris/Reporting/+databank/@Chartpack/*md \
+        $source/Reporting/databank.Chartpack/
+    gcp $iris/Reporting/+databank/@Chartpack/.pages \
+        $source/Reporting/databank.Chartpack/
+
+
+#
+# Distributions
+#
+
+#
+# Utilities
+#
+
+gmkdir -p $source/Utilities/
+gcp $iris/Utilities/index.md \
+    $source/Utilities/
+gcp $iris/Utilities/.pages \
+    $source/Utilities/
+
+    gmkdir -p $source/Utilities/@Grouping
+    gcp $iris/Utilities/@Grouping/*md \
+        $source/Utilities/@Grouping/
+    gcp $iris/Utilities/@Grouping/.pages \
+        $source/Utilities/@Grouping/
+
+
+    gmkdir -p $source/Utilities/+distribution/
+    gcp $iris/Utilities/+distribution/index.md \
+        $source/Utilities/+distribution/
+
+        gmkdir -p $source/Utilities/+distribution/Beta/
+        gcp -p $iris/Utilities/+distribution/@Beta/*md \
+               $source/Utilities/+distribution/Beta/
+
+        gmkdir -p $source/Utilities/+distribution/Gamma/
+        gcp -p $iris/Utilities/+distribution/@Gamma/*md \
+               $source/Utilities/+distribution/Gamma/
+
+    gmkdir -p $source/Utilities/+visual
+    gcp $iris/Utilities/+visual/*md \
+        $source/Utilities/+visual/
+    gcp $iris/Utilities/+visual/.pages \
+        $source/Utilities/+visual/
+
+    gmkdir -p $source/Utilities/+textual
+    gcp $iris/Utilities/+textual/*md \
+        $source/Utilities/+textual/
+    gcp $iris/Utilities/+textual/.pages \
+        $source/Utilities/+textual/
+
+
+tree -d ./source/
+
+

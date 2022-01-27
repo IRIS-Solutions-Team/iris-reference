@@ -1,21 +1,31 @@
-site_name: "[IrisToolbox] Reference Manual"
+site_name: "Iris Toolbox Reference Manual"
 
 theme:
     name: material
     font: 
-        text: "Fira Sans"
-        code: "Fira Code"
+        code: "PT Mono"
+        text: "Montserrat"
     icon: 
-        logo: material/book-open-blank-variant
+        logo: octicons/book-24
+        repo: fontawesome/brands/github
     favicon: "images/book-open-blank-variant.ico?9"
     palette:
         scheme: default
         primary: blue grey
     features:
         - navigation.tabs
+        - navigation.indexes
+    custom_dir: custom
+
+repo_url: https://github.com/IRIS-Solutions-Team/iris-reference
+repo_name: iris-reference
+edit_uri: ""
 
 extra_css:
   - stylesheets/extra.css
+
+extra:
+  version: 2021
 
 use_directory_urls: false
 docs_dir: source
@@ -29,6 +39,7 @@ markdown_extensions:
     - pymdownx.highlight
     - pymdownx.superfences
     - footnotes
+    - meta
     - pymdownx.arithmatex:
         generic: true
 
@@ -37,46 +48,7 @@ extra_javascript:
     - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
 
 plugins:
-    - macros:
-        include_yaml: [headlines.yml]
     - search
+    - awesome-pages
 
-
-nav:
--   Home:
-    -   Introduction: ./index.md
-    -   Installation: ./install.md
--   Structural modeling:
-    -   Introduction: structural-modeling/index.md
-    -   Model source file language: [{"Introduction": "structural-modeling/slang/index.md"}, {"!all-but": "structural-modeling/slang/!all-but.md"}, {"!autoswaps-simulate": "structural-modeling/slang/!autoswaps-simulate.md"}, {"!autoswaps-steady": "structural-modeling/slang/!autoswaps-steady.md"}, {"!dtrends": "structural-modeling/slang/!dtrends.md"}, {"!exogenous-variables": "structural-modeling/slang/!exogenous-variables.md"}, {"!export": "structural-modeling/slang/!export.md"}, {"!for": "structural-modeling/slang/!for.md"}, {"!function": "structural-modeling/slang/!function.md"}, {"!if": "structural-modeling/slang/!if.md"}, {"!import": "structural-modeling/slang/!import.md"}, {"!links": "structural-modeling/slang/!links.md"}, {"!log-variables": "structural-modeling/slang/!log-variables.md"}, {"!measurement-equations": "structural-modeling/slang/!measurement-equations.md"}, {"!measurement-shocks": "structural-modeling/slang/!measurement-shocks.md"}, {"!measurement-variables": "structural-modeling/slang/!measurement-variables.md"}, {"!parameters": "structural-modeling/slang/!parameters.md"}, {"!postprocessor": "structural-modeling/slang/!postprocessor.md"}, {"!preprocessor": "structural-modeling/slang/!preprocessor.md"}, {"!substitutions": "structural-modeling/slang/!substitutions.md"}, {"!switch": "structural-modeling/slang/!switch.md"}, {"!transition-equations": "structural-modeling/slang/!transition-equations.md"}, {"!transition-shocks": "structural-modeling/slang/!transition-shocks.md"}, {"!transition-variables": "structural-modeling/slang/!transition-variables.md"}, {"!ttrend": "structural-modeling/slang/!ttrend.md"}, {"alias": "structural-modeling/slang/alias.md"}, {"block-comment": "structural-modeling/slang/block-comment.md"}, {"diff": "structural-modeling/slang/diff.md"}, {"difflog": "structural-modeling/slang/difflog.md"}, {"equations": "structural-modeling/slang/equations.md"}, {"guidelines": "structural-modeling/slang/guidelines.md"}, {"interp": "structural-modeling/slang/interp.md"}, {"line-comment": "structural-modeling/slang/line-comment.md"}, {"min": "structural-modeling/slang/min.md"}, {"movavg": "structural-modeling/slang/movavg.md"}, {"movgeom": "structural-modeling/slang/movgeom.md"}, {"movprod": "structural-modeling/slang/movprod.md"}, {"movsum": "structural-modeling/slang/movsum.md"}, {"names": "structural-modeling/slang/names.md"}, {"pct": "structural-modeling/slang/pct.md"}, {"roc": "structural-modeling/slang/roc.md"}, {"shift": "structural-modeling/slang/shift.md"}, {"steady-ref": "structural-modeling/slang/steady-ref.md"}, {"steady-version": "structural-modeling/slang/steady-version.md"}]
-    -   Models: [{"Introduction": "structural-modeling/model/index.md"}, {"access": "structural-modeling/model/access.md"}, {"checkSteady": "structural-modeling/model/checkSteady.md"}, {"fromFile": "structural-modeling/model/fromFile.md"}, {"fromSnippet": "structural-modeling/model/fromSnippet.md"}, {"fromString": "structural-modeling/model/fromString.md"}, {"replaceNames": "structural-modeling/model/replaceNames.md"}, {"simulate": "structural-modeling/model/simulate.md"}, {"solve": "structural-modeling/model/solve.md"}, {"steady": "structural-modeling/model/steady.md"}, {"table": "structural-modeling/model/table.md"}]
-    -   Simulation plans: [{"Introduction": "structural-modeling/plan/index.md"}, {"autoswap": "structural-modeling/plan/autoswap.md"}, {"forExplanatory": "structural-modeling/plan/forExplanatory.md"}, {"forModel": "structural-modeling/plan/forModel.md"}]
-    -   Explanatory equations: [{"Introduction": "structural-modeling/explanatory/index.md"}, {"collectResidualNames": "structural-modeling/explanatory/collectResidualNames.md"}, {"regress": "structural-modeling/explanatory/regress.md"}]
-    -   Linear systems: [{"Introduction": "structural-modeling/linear/index.md"}]
--   Time series modeling:
-    -   Introduction: time-series-modeling/index.md
-    -   Vector autoregressions: [{"Introduction": "time-series-modeling/var/index.md"}]
-    -   Structural VARs: [{"Introduction": "time-series-modeling/svar/index.md"}]
-    -   Panel VARs: [{"Introduction": "time-series-modeling/panel/index.md"}]
-    -   Dynamic factor models: [{"Introduction": "time-series-modeling/dfm/index.md"}]
-    -   Estimation with prior dummies: [{"Introduction": "time-series-modeling/dummy/index.md"}]
--   Data management:
-    -   Introduction: data-management/index.md
-    -   Dates: [{"Introduction": "data-management/dates/index.md"}, {"dd": "data-management/dates/dd.md"}, {"hh": "data-management/dates/hh.md"}, {"ii": "data-management/dates/ii.md"}, {"mm": "data-management/dates/mm.md"}, {"qq": "data-management/dates/qq.md"}, {"toString": "data-management/dates/toString.md"}, {"ww": "data-management/dates/ww.md"}, {"yy": "data-management/dates/yy.md"}]
-    -   Time series: [{"Introduction": "data-management/series/index.md"}, {"Series": "data-management/series/Series.md"}, {"chainlink": "data-management/series/chainlink.md"}, {"convert": "data-management/series/convert.md"}, {"empty": "data-management/series/empty.md"}, {"fillMissing": "data-management/series/fillMissing.md"}, {"grow": "data-management/series/grow.md"}, {"linearTrend": "data-management/series/linearTrend.md"}, {"moving": "data-management/series/moving.md"}, {"randomlyGrowing": "data-management/series/randomlyGrowing.md"}, {"rebase": "data-management/series/rebase.md"}, {"regress": "data-management/series/regress.md"}, {"seasonDummy": "data-management/series/seasonDummy.md"}]
-    -   Databanks: [{"Introduction": "data-management/databank/index.md"}, {"apply": "data-management/databank/apply.md"}, {"clip": "data-management/databank/clip.md"}, {"copy": "data-management/databank/copy.md"}, {"eval": "data-management/databank/eval.md"}, {"fieldNames": "data-management/databank/fieldNames.md"}, {"filterFields": "data-management/databank/filterFields.md"}, {"fromCSV": "data-management/databank/fromCSV.md"}, {"list": "data-management/databank/list.md"}, {"merge": "data-management/databank/merge.md"}, {"minusControl": "data-management/databank/minusControl.md"}, {"range": "data-management/databank/range.md"}, {"retrieveColumns": "data-management/databank/retrieveColumns.md"}, {"toArray": "data-management/databank/toArray.md"}, {"toCSV": "data-management/databank/toCSV.md"}, {"withEmpty": "data-management/databank/withEmpty.md"}]
-    -   Interface to [IMF Data Portal]: [{"Introduction": "data-management/imf/index.md"}, {"codes": "data-management/imf/codes.md"}, {"data": "data-management/imf/data.md"}, {"datasets": "data-management/imf/datasets.md"}]
-    -   Interface to [X13-Arima]: [{"Introduction": "data-management/x13/index.md"}, {"season": "data-management/x13/season.md"}]
--   Reporting:
-    -   Introduction: reporting/index.md
-    -   Databank chartpacks: [{"Introduction": "reporting/chartpack/index.md"}, {"Chartpack": "reporting/chartpack/Chartpack.md"}, {"add": "reporting/chartpack/add.md"}, {"clear": "reporting/chartpack/clear.md"}, {"draw": "reporting/chartpack/draw.md"}]
-    -   Interface to [rephrase.js]: [{"Introduction": "reporting/rephrase/index.md"}]
--   Statistics utilities:
-    -   Introduction: statistics-utilities/index.md
-    -   Distribution package:
-        -   Introduction: statistics-utilities/distribution/index.md
-        -   Beta distribution: [{"Introduction": "statistics-utilities/distribution/beta/index.md"}]
-        -   Gamma distribution: [{"Introduction": "statistics-utilities/distribution/gamma/index.md"}]
--   Numerical utilities:
-    -   Nonlinear solver: numerical-utilities/solver/index.md
 
