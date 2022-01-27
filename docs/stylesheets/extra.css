@@ -5,7 +5,7 @@
 }
 
 .md-sidebar {
-    width: 20rem;
+    width: 15rem;
 }
 
 .md-header__title {
@@ -32,7 +32,7 @@ blockquote {
 }
 
 .md-typeset code {
-    font-size: 110%;
+    font-size: 95%;
 }
 
 .md-tabs__item a.md-tabs__link {
@@ -47,7 +47,7 @@ blockquote {
 }
 
 .md-typeset__table code {
-    font-size: 110%;
+    font-size: 95%;
     line-height: 1.2;
 }
 
