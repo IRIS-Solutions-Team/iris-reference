@@ -42,6 +42,8 @@ macroeconomic modeling more convenient in Matlab:
 
 #### [:octicons-tools-24: Utilities](Utilities/index.md)
 >
-> Utilities for
+> Utilities supporting the main functionality, including probabilistic
+> distributions package, data visualization tools for on-screen graphics,
+> text processing utilities.
 >
 
