@@ -15,7 +15,7 @@ theme:
     features:
         - navigation.tabs
         - navigation.indexes
-    custom_dir: custom
+    custom_dir: overrides
 
 repo_url: https://github.com/IRIS-Solutions-Team/iris-reference
 repo_name: iris-reference
