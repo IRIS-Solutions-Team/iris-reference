@@ -42,7 +42,7 @@ jobs:
       - name: Install Material
         run: pip install \
                mkdocs-material \
-               mkdocsawesome-pages-plugin
+               mkdocs-awesome-pages-plugin
         
       - name: Generate pages
         run: mkdocs build
