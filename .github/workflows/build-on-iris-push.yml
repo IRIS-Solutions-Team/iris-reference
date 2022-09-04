@@ -1,0 +1,13 @@
+name: Build on push to iris-toolbox
+
+on:
+  repository_dispatch:
+    types: [iris-toolbox-push-bleeding]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Echo
+        run: echo Hello, world!
