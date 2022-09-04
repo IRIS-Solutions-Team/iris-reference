@@ -10,4 +10,5 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Echo
-        run: echo Hello, world!
+        run: source .github/workflows/build.sh
+        
