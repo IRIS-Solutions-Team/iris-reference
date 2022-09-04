@@ -9,6 +9,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - uses: actions/checkout@v3
+        with:
+          repository: IRIS-Solutions-Team/IRIS-Toolbox
+          token: ${{ secrets.IRIS_TOOLBOX_TOKEN }}
+          ref: bleeding
+          path: ./iris-toolbox
       - name: Echo
-        run: source .github/workflows/build.sh
+        run: ls ./iris-toolbox
+
         
