@@ -8,21 +8,21 @@ theme:
     icon: 
         logo: octicons/book-24
         repo: fontawesome/brands/github
-    favicon: "images/book-open-blank-variant.ico?9"
+    favicon: ".mkdocs/book-open-blank-variant.ico?9"
     palette:
         scheme: default
         primary: blue grey
     features:
         - navigation.tabs
         - navigation.indexes
-    custom_dir: custom
+    custom_dir: overrides
 
 repo_url: https://github.com/IRIS-Solutions-Team/iris-reference
 repo_name: iris-reference
 edit_uri: ""
 
 extra_css:
-  - stylesheets/extra.css
+  - extra/extra.css
 
 extra:
   version: 2021
@@ -44,7 +44,7 @@ markdown_extensions:
         generic: true
 
 extra_javascript:
-    - javascripts/mathjax-config.js
+    - extra/mathjax-config.js
     - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
 
 plugins:
