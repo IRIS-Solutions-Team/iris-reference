@@ -54,7 +54,7 @@ jobs:
                mkdocs-awesome-pages-plugin
 
       - name: Copy source markdown files
-        run: source ./.github/workflows/copy-source.sh
+        run: source ./iris-reference/.github/workflows/copy-source.sh
 
       - name: Generate pages
         run: mkdocs build
@@ -70,5 +70,4 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v1
-
 
