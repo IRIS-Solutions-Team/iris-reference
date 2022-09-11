@@ -61,6 +61,9 @@ jobs:
           cd $GITHUB_WORKSPACE/iris-reference
           mkdocs build
 
+      - name: Check
+          ls $GITHUB_WORKSPACE/iris-reference
+
       - name: Setup pages
         uses: actions/configure-pages@v2
 
