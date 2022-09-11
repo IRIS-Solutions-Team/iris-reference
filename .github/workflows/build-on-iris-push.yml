@@ -62,7 +62,7 @@ jobs:
           mkdocs build
 
       - name: Check
-        run: ls $GITHUB_WORKSPACE/iris-reference
+        run: ls iris-reference
 
       - name: Setup pages
         uses: actions/configure-pages@v2
@@ -70,7 +70,7 @@ jobs:
       - name: Upload pages artifact
         uses: actions/upload-pages-artifact@v1
         with:
-          path: $GITHUB_WORKSPACE/iris-reference/site
+          path: iris-reference/site
 
       - name: Deploy to GitHub Pages
         id: deployment
