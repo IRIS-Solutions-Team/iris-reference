@@ -1,3 +1,0 @@
-# Panel vector autoregression models
-
- 

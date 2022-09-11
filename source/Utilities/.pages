@@ -1,7 +1,0 @@
-nav:
-    - index.md
-    - "Data grouping": "@Grouping"
-    - "Probabilistic distributions": +distribution
-    - "Visualization utilities": +visual
-    - "Text utilities": +textual
-

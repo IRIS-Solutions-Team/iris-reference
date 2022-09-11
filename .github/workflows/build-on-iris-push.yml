@@ -1,21 +1,74 @@
-name: Build on push to iris-toolbox
+name: Build iris-reference pages on push to iris-toolbox
 
 on:
   repository_dispatch:
     types: [iris-toolbox-push-bleeding]
+  workflow_dispatch:
+
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+
+# Allow one concurrent deployment
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+
 
 jobs:
-  build:
+  build-and-deploy:
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/checkout@v3
+
+      - name: Checkout iris-reference
+        uses: actions/checkout@v3
+        with:
+          path: ./iris-reference
+
+      - name: Checkout iris-toolbox
+        uses: actions/checkout@v3
         with:
           repository: IRIS-Solutions-Team/IRIS-Toolbox
           token: ${{ secrets.IRIS_TOOLBOX_TOKEN }}
           ref: bleeding
           path: ./iris-toolbox
-      - name: Echo
-        run: ls ./iris-toolbox
 
-        
+      - name: Install Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install Material
+        run: pip install \
+               mkdocs-material \
+               mkdocs-awesome-pages-plugin
+
+      - name: Copy source markdown files
+        run: source ./.github/workflows/copy-source.sh
+
+      - name: Generate pages
+        run: mkdocs build
+
+      - name: Setup pages
+        uses: actions/configure-pages@v2
+
+      - name: Upload pages artifact
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: ./iris-reference/site
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v1
+
+

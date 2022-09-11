@@ -1,2 +1,0 @@
-# Overview of VAR models
-
