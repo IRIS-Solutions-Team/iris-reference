@@ -1,21 +1,21 @@
 
-root=$(pwd)
-echo $root
 
-cd $root/iris-reference
+cd $GITHUB_WORKSPACE/iris-reference
 
 if [[ -d source/ ]]; then
     rm -rf source/
 fi
 
-mkdir source/
+mkdir $GITHUB_WORKSPACE/iris-reference/source
 
-cd $root/iris-toolbox/
+cd $GITHUB_WORKSPACE/iris-toolbox
+
+find . -name '*.md' -o -name '.pages'
 
 find . -name '*.md' -o -name '.pages' \
-    | xargs cp --parents -t $root/iris-reference/source/
+    | xargs cp --parents -t $GITHUB_WORKSPACE/iris-reference/source/
 
-cd $root/iris-reference
+cd $GITHUB_WORKSPACE/iris-reference
 
 mv ./source/README.md ./source/index.md
 
@@ -23,6 +23,6 @@ cp -r extra source/extra
 
 tree -a source/ -P index.md -P .pages
 
-cd $root
+cd $GITHUB_WORKSPACE
 
 

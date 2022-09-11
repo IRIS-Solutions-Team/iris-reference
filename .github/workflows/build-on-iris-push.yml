@@ -33,7 +33,7 @@ jobs:
       - name: Checkout iris-reference
         uses: actions/checkout@v3
         with:
-          path: ./iris-reference
+          path: iris-reference
 
       - name: Checkout iris-toolbox
         uses: actions/checkout@v3
@@ -41,7 +41,7 @@ jobs:
           repository: IRIS-Solutions-Team/IRIS-Toolbox
           token: ${{ secrets.IRIS_TOOLBOX_TOKEN }}
           ref: bleeding
-          path: ./iris-toolbox
+          path: iris-toolbox
 
       - name: Install Python
         uses: actions/setup-python@v4
@@ -54,7 +54,7 @@ jobs:
                mkdocs-awesome-pages-plugin
 
       - name: Copy source markdown files
-        run: source ./iris-reference/.github/workflows/copy-source.sh
+        run: source $GITHUB_WORKSPACE/iris-reference/.github/workflows/copy-source.sh
 
       - name: Generate pages
         run: mkdocs build
@@ -65,7 +65,7 @@ jobs:
       - name: Upload pages artifact
         uses: actions/upload-pages-artifact@v1
         with:
-          path: ./iris-reference/site
+          path: $GITHUB_WORKSPACE/iris-reference/site
 
       - name: Deploy to GitHub Pages
         id: deployment
