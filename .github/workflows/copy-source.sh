@@ -1,19 +1,19 @@
 
 
-cd $GITHUB_WORKSPACE/iris-reference
+cd iris-reference
 
 if [[ -d source/ ]]; then
     rm -rf source/
 fi
 
-mkdir $GITHUB_WORKSPACE/iris-reference/source
+mkdir source
 
-cd $GITHUB_WORKSPACE/iris-toolbox
+cd ../iris-toolbox
 
 find . -name '*.md' -o -name '.pages' \
-    | xargs cp --parents -t $GITHUB_WORKSPACE/iris-reference/source/
+    | xargs cp --parents -t ../iris-reference/source/
 
-cd $GITHUB_WORKSPACE/iris-reference
+cd ../iris-reference
 
 mv ./source/README.md ./source/index.md
 
@@ -21,6 +21,6 @@ cp -r ./extra ./source/extra
 
 tree -a ./source/ 
 
-cd $GITHUB_WORKSPACE
+cd ..
 
 
