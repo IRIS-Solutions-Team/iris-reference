@@ -57,7 +57,9 @@ jobs:
         run: source $GITHUB_WORKSPACE/iris-reference/.github/workflows/copy-source.sh
 
       - name: Generate pages
-        run: mkdocs build
+        run: |
+          cd $GITHUB_WORKSPACE/iris-reference
+          mkdocs build
 
       - name: Setup pages
         uses: actions/configure-pages@v2
