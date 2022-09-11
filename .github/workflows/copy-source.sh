@@ -12,14 +12,14 @@ mkdir source/
 
 cd $root/iris-toolbox/
 
-gfind . -name '*.md' -o -name '.pages' \
-    | gxargs gcp --parents -t $root/iris-reference/source/
+find . -name '*.md' -o -name '.pages' \
+    | xargs cp --parents -t $root/iris-reference/source/
 
 cd $root/iris-reference
 
-gmv ./source/README.md ./source/index.md
+mv ./source/README.md ./source/index.md
 
-gcp -r extra source/extra
+cp -r extra source/extra
 
 tree -a source/ -P index.md -P .pages
 
