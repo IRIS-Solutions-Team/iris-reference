@@ -1,5 +1,10 @@
 
 
+[data-md-color-accent=brown] {
+    --md-accent-fg-color: #624226;
+    --md-typeset-a-color: var(--md-primary-fg-color);
+}
+
 .md-grid {
     max-width: 90rem;
 }
@@ -18,8 +23,9 @@ mark.critic {
     font-weight: bold;
 }
 
-blockquote {
-    font-size: 85%;
+[dir=ltr] .md-typeset blockquote {
+/*    font-size: 85%; */
+    border-left-style: dotted;
 }
 
 .md-typeset {
@@ -27,15 +33,19 @@ blockquote {
     font-size: 0.7rem;
 }
 
+.md-sidebar a, .md-sidebar a:focus,
+.md-typeset a, .md-typeset a:focus {
+    color: var(--md-primary-fg-color);
+    text-decoration-line: underline;
+    text-decoration-style: dotted;
+}
+
 .md-typeset ul {
     list-style-type: square;
 }
 
 .md-typeset code {
-    font-size: 95%;
-}
-
-.md-typeset code {
+    font-size: 1em;
     padding-left: 0px;
     padding-right: 0px;
 }
@@ -52,7 +62,7 @@ blockquote {
 }
 
 .md-typeset__table code {
-    font-size: 95%;
+    font-size: 0.95em;
     line-height: 1.2;
 }
 
@@ -60,6 +70,10 @@ blockquote {
     /* font-size: 1.6em; */
     font-size: 1.6em;
     font-weight: bold;
+}
+
+.md-typeset h1 ins {
+    display: none;
 }
 
 .md-typeset h2 {
@@ -75,5 +89,4 @@ blockquote {
 .md-nav--secondary > ul > li > nav {
     display: none;
 }
-
 

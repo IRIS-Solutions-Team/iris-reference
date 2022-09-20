@@ -3,15 +3,15 @@ site_name: "Iris Toolbox Reference Manual"
 theme:
     name: material
     font: 
-        code: "PT Mono"
+        code: "Ubuntu Mono"
         text: "Montserrat"
     icon: 
         logo: octicons/book-24
         repo: fontawesome/brands/github
     favicon: ".mkdocs/book-open-blank-variant.ico?9"
     palette:
-        scheme: default
         primary: blue grey
+        accent: brown
     features:
         - navigation.tabs
         - navigation.indexes
@@ -38,6 +38,9 @@ markdown_extensions:
     - pymdownx.critic
     - pymdownx.highlight
     - pymdownx.superfences
+    - pymdownx.caret
+    - pymdownx.tilde
+    - pymdownx.mark
     - footnotes
     - meta
     - pymdownx.arithmatex:
