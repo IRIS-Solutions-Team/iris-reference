@@ -45,6 +45,8 @@ markdown_extensions:
     - meta
     - pymdownx.arithmatex:
         generic: true
+    - pymdownx.tabbed:
+        alternate_style: true 
 
 extra_javascript:
     - extra/mathjax-config.js
